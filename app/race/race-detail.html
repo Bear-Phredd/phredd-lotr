@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="col-sm-4">
+	<a ui-sref="race-detail({id:$ctrl.list.prev})">prec.</a>
+	</div>
+	<div class="col-sm-4">
+	<h1>{{$ctrl.list.name}}</h1>
+	</div>
+	<div class="col-sm-4">
+	<a ui-sref="race-detail({id:$ctrl.list.next})">suiv.</a>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-4" ng-switch on="{{$ctrl.list.img}}">
+		<img
+			ng-src="/img/race/{{$ctrl.list.id}}.png"
+			class="img-responsive"
+			alt="race {{$ctrl.list.name}}"
+			ng-switch-when="{{$ctrl.list.img}}" />
+		<img
+			ng-src="/img/race/default.png"
+			class="img-responsive"
+			alt="aucune image pour cette race"
+			ng-switch-default />
+	</div>
+	<div class="col-sm-8">
+		{{$ctrl.list.description}}
+	</div>
+</div>

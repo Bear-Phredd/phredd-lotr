@@ -1,0 +1,72 @@
+[
+	{
+		"id"		: 1,
+		"name"		: "Hobbit",
+		"description"	: "bla bla bla"
+	},
+	{
+		"id"		: 2,
+		"name"		: "Humain",
+		"description"	: "bla bla bla"
+	},
+	{
+		"id"		: 3,
+		"name"		: "Dunedain",
+		"description"	: "bla bla bla"
+	},
+	{
+		"id"		: 4,
+		"name"		: "Nain",
+		"description"	: "bla bla bla"
+	},
+	{
+		"id"		: 5,
+		"name"		: "Elfe",
+		"description"	: "bla bla bla"
+	},
+	{
+		"id"		: 6,
+		"name"		: "Orc",
+		"description"	: "bla bla bla"
+	},
+	{
+		"id"		: 7,
+		"name"		: "Gobelin",
+		"description"	: "bla bla bla"
+	},
+	{
+		"id"		: 8,
+		"name"		: "Troll",
+		"description"	: "bla bla bla"
+	},
+	{
+		"id"		: 9,
+		"name"		: "Istari",
+		"description"	: "bla bla bla"
+	},
+	{
+		"id"		: 10,
+		"name"		: "Nazgul",
+		"description"	: "bla bla bla"
+	},
+	{
+		"id"		: 11,
+		"name"		: "Animaux",
+		"description"	: "bla bla bla"
+	},
+	{
+		"id"		: 12,
+		"name"		: "Uruk Haï",
+		"description"	: "bla bla bla"
+	},
+	{
+		"id"		: 13,
+		"name"		: "Balrog",
+		"description"	: "bla bla bla"
+	},
+	{
+		"id"		: 14,
+		"name"		: "Dragon",
+		"description"	: "bla bla bla"
+	}
+]

@@ -1,0 +1,36 @@
+OX_6196643610({
+  "ads":{
+    "chain":1,
+    "medium":"w",
+    "record_tmpl":"http://ox-d.wikia.servedbyopenx.com/{medium}/1.0/{rtype}?ts={txn_state}",
+    "pixels":"http://us-u.openx.net/w/1.0/pd?plm=5&ph=50cd45fa-7093-4f15-95ec-1722f80fddf1",
+    "adunits" : [
+      {
+        "auid":"538229265",
+        "chain_timeout":"",
+        "chain_revenue":"113",
+        "chain":[
+          {
+            "is_fallback":0,
+            "framed":1,
+            "ad_id":"537170971",
+            "adv_acct_id":"537073278",
+            "is_ng":1,
+            "adv_id":"152d07b1-da41-4c40-ad18-fe74c269534a:537073278",
+            "brand_id":"27957",
+            "cpipc":113,
+            "auct_win_is_deal":0,
+            "pub_rev":"113",
+            "width":"728",
+            "height":"90",
+            "html":"<script type=\"text/javascript\" src=\"http://rs.gwallet.com/r1/ad/c513671T763026B64717F70340R6t2/_ibm6w8tyxfapp5okgthheebgqaq9jhsiz54c1dbtnr9u1hxkj7baqkqmq9rd8169ceqyweab95z76r4mppsxe7k6ps7pkknnsswfqtynwdcy9s88xkircgac3pqmr8abmay6fxmxtn3yn4j9k7w95irpjx8aztsbyjotyqxwdnh6b59yn6td1q7cxbsc4hqxzb43gyng5o68hz4dz5h1xz17hypmxpqggutb8nw93ozymjmnwf4pysfws3nijdyanwk6nwt5et74jmm1cycfoay5zib1q9owkbk8oo3pyd4m8otibme4ffu6qwyby3gc5qwzpgs7j5i6n?clickurl=http%3A%2F%2Fox-d.wikia.servedbyopenx.com%2Fw%2F1.0%2Frc%3Fts%3D1fHJpZD05ODczNmY2ZC02OTVlLTRkODMtYmU3Yy05NzJmNjZjZTA2MmJ8cnQ9MTQ3NDU3MDkwMXxhdWlkPTUzODIyOTI2NXxhdW09RE1JRC5XRUJ8YXVwZj1kaXNwbGF5fHNpZD01MzcyMTAxNDV8cHViPTUzNzA4NjgwOXxwYz1VU0R8cmFpZD0wMjgzMDUzMC0xMmZkLTQ4ZDEtOTYzZS1iM2U5YTIwZTJhN2N8Y2w9MXxhaWQ9NTM3MTcwOTcxfHQ9MTJ8YXM9NzI4eDkwfGxpZD01MzcxMzMwODB8b2lkPTUzNzA5NjE4NnxwPTE2MHxwcj0xMTN8YXRiPTE2N3xhZHY9NTM3MDczMjc4fGFjPVVTRHxwbT1QUklDSU5HLkNQTXxtPTF8YWk9MTUyZDA3YjEtZGE0MS00YzQwLWFkMTgtZmU3NGMyNjk1MzRhfG1jPVVTRHxtcj00N3xwaT0xMTN8bXVpPWU3OTQzYjlkLTA4NTAtMGNlYS01OTFhLWQ0ZWU1ZThjZDFmZnxtYT04ZTg2ZGUwMy04NzhlLTQ0YjEtYjU0My0zNjlmZmQ3ZDg3OWV8bXJ0PTE0NzQ1NzA5MDF8bXJjPVNSVF9XT058bXdhPTUzNzA3MzI3OHxjaz0xfG13Ymk9Mjc5NTd8bXdiPTE2N3xtYXA9MTYwfGVsZz0xfG1vYz1VU0R8bW9yPTQ3fG1wYz1VU0R8bXByPTExM3xtcGY9NTB8bW1mPTUwfG1wbmY9NTB8bW1uZj01MHxwY3Y9MjAxNjA3MTR8bW89T1h8ZWM9NTEzNjcxfG1wdT0xMTN8bWNwPTE2MHxhcXQ9cnRifGljPTI1NjNiOTcxLThmY2ItNDA1Yy1hODRlLTQzNTliY2VlYWVmOXxzYXM9NzI5eDkxfGN0PTF8bXdjPTUzNzA5NjE4Nnxtd3A9NTM3MTMzMDgwfG13Y3I9NTM3MTcwOTcxfG13aXM9MXxtd3B0PW9wZW5ydGJfanNvbnxjaT0xfHVyPTgyNnhraEYxaDh8YmRyPTF8bGQ9amV1bmVzLmdvdXYuZnI%26r%3D&win_price=AAABV1NGWnVqEPtjUMKPHdNiN-RPBJyKtxmgJQ\"></script>",
+            "target":"_blank",
+            "ts":"1fHJpZD05ODczNmY2ZC02OTVlLTRkODMtYmU3Yy05NzJmNjZjZTA2MmJ8cnQ9MTQ3NDU3MDkwMXxhdWlkPTUzODIyOTI2NXxhdW09RE1JRC5XRUJ8YXVwZj1kaXNwbGF5fHNpZD01MzcyMTAxNDV8cHViPTUzNzA4NjgwOXxwYz1VU0R8cmFpZD0wMjgzMDUzMC0xMmZkLTQ4ZDEtOTYzZS1iM2U5YTIwZTJhN2N8Y2w9MXxhaWQ9NTM3MTcwOTcxfHQ9MTJ8YXM9NzI4eDkwfGxpZD01MzcxMzMwODB8b2lkPTUzNzA5NjE4NnxwPTE2MHxwcj0xMTN8YXRiPTE2N3xhZHY9NTM3MDczMjc4fGFjPVVTRHxwbT1QUklDSU5HLkNQTXxtPTF8YWk9MTUyZDA3YjEtZGE0MS00YzQwLWFkMTgtZmU3NGMyNjk1MzRhfG1jPVVTRHxtcj00N3xwaT0xMTN8bXVpPWU3OTQzYjlkLTA4NTAtMGNlYS01OTFhLWQ0ZWU1ZThjZDFmZnxtYT04ZTg2ZGUwMy04NzhlLTQ0YjEtYjU0My0zNjlmZmQ3ZDg3OWV8bXJ0PTE0NzQ1NzA5MDF8bXJjPVNSVF9XT058bXdhPTUzNzA3MzI3OHxjaz0xfG13Ymk9Mjc5NTd8bXdiPTE2N3xtYXA9MTYwfGVsZz0xfG1vYz1VU0R8bW9yPTQ3fG1wYz1VU0R8bXByPTExM3xtcGY9NTB8bW1mPTUwfG1wbmY9NTB8bW1uZj01MHxwY3Y9MjAxNjA3MTR8bW89T1h8ZWM9NTEzNjcxfG1wdT0xMTN8bWNwPTE2MHxhcXQ9cnRifGljPTI1NjNiOTcxLThmY2ItNDA1Yy1hODRlLTQzNTliY2VlYWVmOXxzYXM9NzI5eDkxfGN0PTF8bXdjPTUzNzA5NjE4Nnxtd3A9NTM3MTMzMDgwfG13Y3I9NTM3MTcwOTcxfG13aXM9MXxtd3B0PW9wZW5ydGJfanNvbnxjaT0xfHVyPTgyNnhraEYxaDh8YmRyPTF8bGQ9amV1bmVzLmdvdXYuZnI",
+            "type":"html",
+            "ad_url":"<script type=\"text/javascript\" src=\"http://rs.gwallet.com/r1/ad/c513671T763026B64717F70340R6t2/_ibm6w8tyxfapp5okgthheebgqaq9jhsiz54c1dbtnr9u1hxkj7baqkqmq9rd8169ceqyweab95z76r4mppsxe7k6ps7pkknnsswfqtynwdcy9s88xkircgac3pqmr8abmay6fxmxtn3yn4j9k7w95irpjx8aztsbyjotyqxwdnh6b59yn6td1q7cxbsc4hqxzb43gyng5o68hz4dz5h1xz17hypmxpqggutb8nw93ozymjmnwf4pysfws3nijdyanwk6nwt5et74jmm1cycfoay5zib1q9owkbk8oo3pyd4m8otibme4ffu6qwyby3gc5qwzpgs7j5i6n?clickurl=http%3A%2F%2Fox-d.wikia.servedbyopenx.com%2Fw%2F1.0%2Frc%3Fts%3D1fHJpZD05ODczNmY2ZC02OTVlLTRkODMtYmU3Yy05NzJmNjZjZTA2MmJ8cnQ9MTQ3NDU3MDkwMXxhdWlkPTUzODIyOTI2NXxhdW09RE1JRC5XRUJ8YXVwZj1kaXNwbGF5fHNpZD01MzcyMTAxNDV8cHViPTUzNzA4NjgwOXxwYz1VU0R8cmFpZD0wMjgzMDUzMC0xMmZkLTQ4ZDEtOTYzZS1iM2U5YTIwZTJhN2N8Y2w9MXxhaWQ9NTM3MTcwOTcxfHQ9MTJ8YXM9NzI4eDkwfGxpZD01MzcxMzMwODB8b2lkPTUzNzA5NjE4NnxwPTE2MHxwcj0xMTN8YXRiPTE2N3xhZHY9NTM3MDczMjc4fGFjPVVTRHxwbT1QUklDSU5HLkNQTXxtPTF8YWk9MTUyZDA3YjEtZGE0MS00YzQwLWFkMTgtZmU3NGMyNjk1MzRhfG1jPVVTRHxtcj00N3xwaT0xMTN8bXVpPWU3OTQzYjlkLTA4NTAtMGNlYS01OTFhLWQ0ZWU1ZThjZDFmZnxtYT04ZTg2ZGUwMy04NzhlLTQ0YjEtYjU0My0zNjlmZmQ3ZDg3OWV8bXJ0PTE0NzQ1NzA5MDF8bXJjPVNSVF9XT058bXdhPTUzNzA3MzI3OHxjaz0xfG13Ymk9Mjc5NTd8bXdiPTE2N3xtYXA9MTYwfGVsZz0xfG1vYz1VU0R8bW9yPTQ3fG1wYz1VU0R8bXByPTExM3xtcGY9NTB8bW1mPTUwfG1wbmY9NTB8bW1uZj01MHxwY3Y9MjAxNjA3MTR8bW89T1h8ZWM9NTEzNjcxfG1wdT0xMTN8bWNwPTE2MHxhcXQ9cnRifGljPTI1NjNiOTcxLThmY2ItNDA1Yy1hODRlLTQzNTliY2VlYWVmOXxzYXM9NzI5eDkxfGN0PTF8bXdjPTUzNzA5NjE4Nnxtd3A9NTM3MTMzMDgwfG13Y3I9NTM3MTcwOTcxfG13aXM9MXxtd3B0PW9wZW5ydGJfanNvbnxjaT0xfHVyPTgyNnhraEYxaDh8YmRyPTF8bGQ9amV1bmVzLmdvdXYuZnI%26r%3D&win_price=AAABV1NGWnVqEPtjUMKPHdNiN-RPBJyKtxmgJQ\"></script>"
+          }
+        ]
+      }
+    ]
+  }
+});

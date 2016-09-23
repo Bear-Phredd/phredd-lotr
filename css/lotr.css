@@ -1,0 +1,92 @@
+BODY
+{
+	background	: #030303;
+	color		: #FAFAFA;
+	//overflow	: hidden;
+}
+
+#nav-top
+{
+	position	: fixed;
+	z-index		: 10;
+	top			: 0;
+	left		: 0;
+	height		: 60px;
+	background	: #030303;
+}
+
+#logo
+{
+	padding		: 10px;
+}
+
+#nav-left
+{
+	margin-top	: 80px;
+}
+
+#nav-left UL
+{
+}
+
+#main
+{
+	margin-top	: 60px;
+	overflow	: auto;
+}
+
+#nav-right
+{
+	margin-top	: 60px;
+}
+
+#nav-bottom
+{
+	position	: fixed;
+	bottom		: 0;
+	left		: 0;
+	height		: 20px;
+}
+
+#map
+{
+	overflow	: auto;
+}
+
+#map TH
+{
+	background	: #666666;
+	text-align	: center;
+}
+
+.line
+{
+	background	: #ADCF4F;
+}
+
+.cell
+{
+	width		: 50px;
+	height		: 50px;
+	min-width	: 50px;
+	min-height	: 50px;
+	padding		: 2px;
+	text-align	: center;
+	border		: 1px solid #333333;
+}
+
+.cell IMG
+{
+	width		: 46px;
+	height		: 46px;
+}
+
+.selected
+{
+	background	: black;
+}
+
+.reachable
+{
+	background	: yellow;
+}

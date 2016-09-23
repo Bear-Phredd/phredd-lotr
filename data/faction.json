@@ -1,0 +1,112 @@
+[
+	{
+		"id"	: 1,
+		"race"	: [2],
+		"name"	: "Numenor"
+	},
+	{
+		"id"	: 1,
+		"race"	: [2],
+		"name"	: "Arnor"
+	},
+	{
+		"id"	: 1,
+		"race"	: [2],
+		"name"	: "Minas Tirith"
+	},
+	{
+		"id"	: 1,
+		"race"	: [2],
+		"name"	: "Rohan"
+	},
+	{
+		"id"	: 1,
+		"race"	: [2],
+		"name"	: "Dol Amroth"
+	},
+	{
+		"id"	: 1,
+		"race"	: [4],
+		"name"	: "Peuple de Durin"
+	},
+	{
+		"id"	: 1,
+		"race"	: [5],
+		"name"	: "Foncombe"
+	},
+	{
+		"id"	: 1,
+		"race"	: [5],
+		"name"	: "Galadhrim"
+	},
+	{
+		"id"	: 1,
+		"race"	: [5],
+		"name"	: "Galadhrim"
+	},
+	{
+		"id"	: 1,
+		"race"	: [5],
+		"name"	: "Mirkwood"
+	},
+	{
+		"id"	: 1,
+		"race"	: [1,2,3,4,5,9],
+		"name"	: "la communauté"
+	},
+	{
+		"id"	: 1,
+		"race"	: [1],
+		"name"	: "la comté"
+	},
+	{
+		"id"	: 1,
+		"race"	: [2],
+		"name"	: "Umbar"
+	},
+	{
+		"id"	: 1,
+		"race"	: [2],
+		"name"	: "Haradrim"
+	},
+	{
+		"id"	: 1,
+		"race"	: [2,6,9,12],
+		"name"	: "Isengard"
+	},
+	{
+		"id"	: 1,
+		"race"	: [2],
+		"name"	: "Orientaux"
+	},
+	{
+		"id"	: 1,
+		"race"	: [6,8,10,11],
+		"name"	: "Mordor"
+	},
+	{
+		"id"	: 1,
+		"race"	: [7,11,13],
+		"name"	: "Moria"
+	},
+	{
+		"id"	: 1,
+		"race"	: [6,8,10,11],
+		"name"	: "Angmar"
+	},
+	{
+		"id"	: 1,
+		"race"	: [2],
+		"name"	: "Dale"
+	},
+	{
+		"id"	: 1,
+		"race"	: [2],
+		"name"	: "Lac-ville"
+	},
+	{
+		"id"	: 1,
+		"race"	: [4],
+		"name"	: "Erebor"
+	}
+]

@@ -1,0 +1,20 @@
+var ws_unit = {        
+   id: 498001,         
+   appid: 2251,     
+   tpcid: 0,       
+   tpoid: 0,       
+   tpolid: 0,     
+   acid: 0,       
+   cw: 300,            
+   ch: 250,            
+   slot: 0,         
+   dnr: false,         
+   force_first: false,  
+   hasMappings: false,
+   trackable: false  
+};                     
+//dnr reason: DA rotation allowed 
+
+var el = document.body, ss = document.scripts;for (var i = ss.length - 1; i > -1; i--) {if (ss[i].src.indexOf('adunitMapping') > -1) {el = ss[i].parentNode; break;}}var u = document.createElement('SCRIPT');
+u.src='//wfpscripts.webspectator.com/ws-ad.js';
+el.appendChild(u);

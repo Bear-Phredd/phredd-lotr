@@ -1,0 +1,9 @@
+
+.sw-play:before { content: '\e800'; } /* '' */
+.sw-pause:before { content: '\e801'; } /* '' */
+.sw-to-end:before { content: '\e802'; } /* '' */
+.sw-to-end-alt:before { content: '\e803'; } /* '' */
+.sw-to-start:before { content: '\e804'; } /* '' */
+.sw-to-start-alt:before { content: '\e805'; } /* '' */
+.sw-fast-fw:before { content: '\e806'; } /* '' */
+.sw-fast-bw:before { content: '\e807'; } /* '' */

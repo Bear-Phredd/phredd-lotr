@@ -1,0 +1,20 @@
+var ws_unit = {        
+   id: 498001,         
+   appid: 2251,     
+   tpcid: 235834,       
+   tpoid: 14330,       
+   tpolid: 244220,     
+   acid: 384,       
+   cw: 1,            
+   ch: 1,            
+   slot: 0,         
+   dnr: false,         
+   force_first: false,  
+   hasMappings: false,
+   trackable: false  
+};                     
+//dnr reason: threshold validation succeeded : threshold = 10, line priority = 15 
+
+var el = document.body, ss = document.scripts;for (var i = ss.length - 1; i > -1; i--) {if (ss[i].src.indexOf('adunitMapping') > -1) {el = ss[i].parentNode; break;}}var u = document.createElement('SCRIPT');
+u.src='//wfpscripts.webspectator.com/ws-ad.js';
+el.appendChild(u);

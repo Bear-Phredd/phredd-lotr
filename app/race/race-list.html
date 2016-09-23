@@ -1,0 +1,21 @@
+<h1>Les races</h1>
+
+<div class="row">
+	<div class="col-sm-2" class="text-center" ng-repeat="item in $ctrl.list">
+<a ui-sref="race-detail({id:item.id})" ng-switch on="{{item.img}}">
+	<img
+		ng-src="/img/race/{{item.id}}.png"
+		class="img2-responsive"
+		height="100"
+		alt="race {{item.name}}"
+		ng-switch-when="{{item.img}}" />
+	<img
+		ng-src="/img/race/default.png"
+		class="img2-responsive"
+		height="100"
+		alt="aucune image pour cette race"
+		ng-switch-default /><br />
+	{{item.name}}
+</a>
+	</div>
+</div>
