@@ -129,11 +129,9 @@ function battleController($compile)
 		[
 			{
 				player	: 'Phredd',
-				color	: '#B9121B',
 			},
 			{
 				player	: 'Tristan',
-				color	: '#046380',
 			},
 		],
 		troop	:
@@ -332,16 +330,9 @@ function battleController($compile)
 	}
 	oMap.size.arrayY	= aY;
 
-	// add player infos on troop
-	var iLength	= oMap.troop.length;	
-	for(var i=0; i<iLength; i++)
-	{
-		var iTeam				= oMap.troop[i].team;
-		oMap.troop[i].player	= oMap.army[iTeam].player;
-		oMap.troop[i].color		= oMap.army[iTeam].color;
-	}
-
 	var aReachable	= [];
+	var aAttackable	= [];
+
 	function getNeighbour(iX, iY, iMove)
 	{
 		if(oConfig.bDebug)
@@ -353,6 +344,7 @@ function battleController($compile)
 		getNorthNeighbour(iX, iY, iMove);
 
 		aReachable	= [];
+		aAttackable	= [];
 	}
 
 	function getEastNeighbour(iX, iY, iMove)
@@ -402,21 +394,25 @@ function battleController($compile)
 
 	function isFoundNeighbour(iX, iY)
 	{
-		var iPos	= aReachable.indexOf(iX + '/' + iY);
+		var iPos1	= aReachable.indexOf(iX + '/' + iY);
+		var iPos2	= aAttackable.indexOf(iX + '/' + iY);
 
-		if(iPos === -1)
+		if(iPos1 === -1 && iPos2 === -1)
 			return false;
 
 		return true;
 	}
 
-	function addFoundNeighbour(iX, iY, dCell)
+	function addReachable(iX, iY, dCell)
 	{
-		if(oConfig.bDebug)
-			console.warn('addFoundNeighbour(iX='+iX+', iY='+iY+', dCell='+dCell+')');
-
 		aReachable.push(iX + '/' + iY);
 		angular.element(dCell).addClass('reachable');
+	}
+
+	function addAttackable(iX, iY, dCell)
+	{
+		aAttackable.push(iX + '/' + iY);
+		angular.element(dCell).addClass('attackable');
 	}
 
 	function handleNeighbour(iX, iY, iMove)
@@ -425,12 +421,16 @@ function battleController($compile)
 			console.debug('handleNeighbour(iX='+iX+', iY='+iY+', iMove='+iMove+')');
 
 		var dCell	= document.querySelector('[data-x="'+iX+'"][data-y="'+iY+'"]');
+		var bUnit	= angular.element(dCell).children().attr('data-unit');
 		var iCost	= getCost(dCell);
+console.debug(bUnit);
+		if(bUnit == 'yes')
+			addAttackable(iX, iY, dCell);
 
 		iMove	-= iCost;
 
 		if(iMove>=0)
-			addFoundNeighbour(iX, iY, dCell);
+			addReachable(iX, iY, dCell);
 
 		if(iMove>0)
 			getNeighbour(iX, iY, iMove);
@@ -440,8 +440,10 @@ function battleController($compile)
 	{
 			var iCost	= angular.element(dCell).children().attr('data-cost');
 
+			// Empty cell
 			if(typeof iCost == 'undefined')
 				return 1;
+			// Intraversable
 			else if(iCost==0)
 				return 1000;
 

@@ -30,16 +30,13 @@
 <a 
 	href		= ""
 	data-cost	= "0"
+	data-unit	= "true"
 	ng-repeat	= "(id, troop) in battle.map.troop"
 	ng-if		= "x==troop.x && y==troop.y"
 />
 	<img
 		alt			= "{{troop.name}}"
-		data-id		= "{{id}}"
-		data-team	= "{{troop.team}}"
-		data-player	= "{{troop.player}}"
-		data-move	= "{{troop.move}}"
-		style		= "background:{{troop.color}};"
+		class		= "team{{troop.team}}"
 		uib-tooltip	= "{{troop.name}} déplacement:{{troop.move}}"
 		ng-src		= "/img/race/{{troop.img}}.png"
 	/>

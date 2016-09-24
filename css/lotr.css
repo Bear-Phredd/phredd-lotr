@@ -51,6 +51,7 @@ BODY
 #map
 {
 	overflow	: auto;
+	background	: #B7CA79;
 }
 
 #map TH
@@ -61,7 +62,6 @@ BODY
 
 .line
 {
-	background	: #ADCF4F;
 }
 
 .cell
@@ -81,13 +81,33 @@ BODY
 	height		: 46px;
 }
 
+.team0
+{
+	color		; #666666;
+	background	: #F6E8B1;
+}
+
+.team1
+{
+	color		; #666666;
+	background	: #89725B;
+}
+
 .selected
 {
-	background	: black;
+	//background	: #677E52;
+	//background	: #B478C9;
+	background	: #666666;
 }
 
 .reachable
 {
 	cursor		: pointer;
-	background	: yellow;
+	background	: #B0CC99;
+}
+
+.attackable
+{
+	cursor		: pointer;
+	background	: #B9121B;
 }
