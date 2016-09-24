@@ -473,30 +473,21 @@ function battleController($compile)
 
 	function selectTroop()
 	{
-		console.debug('selectTroop' + iSelectedTroop);
-
 		cleanCell();
 
 		// get troop coords
 		var iX		= oMap.troop[iSelectedTroop].x;
 		var iY		= oMap.troop[iSelectedTroop].y;
-		console.log(iX + '/' + iY);
 	
 		// Add mark on selected troop
 		var dCell	= document.querySelector('[data-x="'+iX+'"][data-y="'+iY+'"]');
-		console.warn('toto');
-		console.log(dCell);
-		angular.element(dCell).children().addClass('selected');
+		angular.element(dCell).addClass('selected');
 
 		showMove();
 	}
 
 	function selectDest(e)
 	{
-		// No troop selected
-		if(!jSelectedTroop)
-			return;
-		
 		var jSelectedDest	= angular.element(e.target);
 
 		if(jSelectedDest.hasClass('reachable'))
@@ -509,7 +500,12 @@ function battleController($compile)
 			cleanCell();
 		}
 
+		// next troop
 		iSelectedTroop++;
+
+		if(iSelectedTroop == iTroopCount)
+			iSelectedTroop	= 0;
+
 		selectTroop(iSelectedTroop);
 	}
 
@@ -520,10 +516,10 @@ function battleController($compile)
 	this.selectDest		= selectDest;
 
 	// Init battle
-	var jSelectedTroop	= null;
+	var iTroopCount		= oMap.troop.length;
 	var iSelectedTroop	= 0;
 
-	selectTroop();
+	setTimeout(selectTroop, 300);
 }
 
 app.controller('battleController', aRequire);

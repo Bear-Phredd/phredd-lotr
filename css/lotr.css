@@ -88,5 +88,6 @@ BODY
 
 .reachable
 {
+	cursor		: pointer;
 	background	: yellow;
 }
