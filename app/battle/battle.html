@@ -39,9 +39,11 @@
 	<img
 		alt			= "{{troop.name}}"
 		class		= "team{{troop.team}}"
-		uib-tooltip	= "{{troop.name}} déplacement:{{troop.move}}"
+		data-id		= "{{id}}"
+		uib-tooltip			= "{{troop.name}}"
 		ng-src		= "/img/race/{{troop.img}}.png"
 	/>
+	<!--uib-tooltip-html	= "{{troop.name}}<br /> déplacement:{{troop.move}} -->
 </a>
 
 		</td>

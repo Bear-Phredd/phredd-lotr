@@ -7,6 +7,7 @@ var oOption =
 	controller	:
 	[
 		'$compile',
+		'toaster',
 		battleController,
 	],
 	controllerAs	: 'battle',
@@ -17,7 +18,7 @@ var aRequire	=
 	'ui.router',
 ];
 
-function battleController($compile)
+function battleController($compile, toaster)
 {
 	var oMap	=
 	{
@@ -46,11 +47,11 @@ function battleController($compile)
 				img 	: 6,
 				x		: 1,
 				y		: 4,
-				att		: 60,
-				def		: 30,
-				pv		: 10,
-				armor	: 3,
-				damage	: 5,
+				att		: 90,
+				def		: 10,
+				pv		: 5,
+				armor	: 1,
+				damage	: 10,
 				move	: 5
 			},
 			{
@@ -59,12 +60,12 @@ function battleController($compile)
 				img 	: 5,
 				x		: 5,
 				y		: 5,
-				att		: 70,
-				def		: 50,
+				att		: 90,
+				def		: 10,
 				pv		: 5,
-				armor	: 4,
-				damage	: 5,
-				move	: 3
+				armor	: 1,
+				damage	: 10,
+				move	: 5
 			},
 		],
 	};
@@ -253,27 +254,89 @@ function battleController($compile)
 	function selectAtt(e)
 	{
 		var jSelectedDest	= angular.element(e.target);
-console.log(jSelectedDest);
 
-		// move troop to dest
+		// attack
 		if(jSelectedDest.parent().parent().hasClass('attackable'))
 		{
-console.log('attttttack');
-/*
-			// get troop coords
-			var iX		= jSelectedDest.attr('data-x');
-			var iY		= jSelectedDest.attr('data-y');
-			oMap.troop[iSelectedTroop].x	= iX;
-			oMap.troop[iSelectedTroop].y	= iY;
-		
-			// Add mark on selected troop
-			var dCell	= document.querySelector('[data-x="'+iX+'"][data-y="'+iY+'"]');
-			angular.element(dCell).addClass('selected');
-		*/
+			var bSuccess	= false;
+			var sResult		= '';
+
+			var sAtt		= oMap.troop[iSelectedTroop].name;
+			var iAtt		= oMap.troop[iSelectedTroop].att;
+			var iRoll		= Math.floor((Math.random() * 100) + 1);
+
+			if(iRoll <= iAtt)
+			{
+				sResult	+= sAtt + 'reussi son attaque avec un jet de dès de ' + iRoll + '<br />';
+
+				var iId		= jSelectedDest.attr('data-id');
+				var sDef	= oMap.troop[iId].name;
+				var iDef	= oMap.troop[iId].def;
+
+				iRoll	= Math.floor((Math.random() * 100) + 1);
+				if(iRoll <= iDef)
+				{
+					sResult	+= sDef + 'reussi sa parade avec un jet de dès de ' + iRoll + '<br />';
+				}
+				else
+				{
+					sResult		+= sDef + 'rate sa parade avec un jet de dès de ' + iRoll + '<br />';
+					bSuccess	= true;
+					var iDmg	= oMap.troop[iSelectedTroop].damage;
+					iDmg		= Math.floor((Math.random() * iDmg) + 1);
+					sResult		+= sAtt + ' inflige ' + iDmg + ' point de dégat<br />';
+
+					var iArmor	= oMap.troop[iId].armor;
+					iArmor		= Math.floor((Math.random() * iArmor) + 1);
+					sResult		+= "l'armure de " + sDef + ' le protège de ' + iArmor + '<br />';
+
+					var iWound	= +iDmg -iArmor
+					if(iArmor > iDmg)
+						var iWound	= 0;
+
+					sResult		+= sAtt + ' perd ' + iWound + ' point de vie<br />';
+
+					var iPv		= oMap.troop[iId].pv;
+					oMap.troop[iId].pv	-= +iWound;
+
+					if(oMap.troop[iId].pv > 0)
+						sResult		+= 'Il reste ' + oMap.troop[iId].pv + ' PdV a ' + sDef + '<br />';
+					else
+					{
+						sResult		+= sDef + ' succombe a ses blessures<br />';
+						oMap.troop.splice(iId, 1);
+					}
+				}
+			}
+			else
+			{
+				sResult	+= sAtt + 'rate son attaque avec un jet de dès de ' + iRoll + '<br />';
+			}
+
+			if(bSuccess)
+			{
+				//toaster.pop('success', 'attaque reussie', sResult);
+				toaster.pop
+				({
+					type			: 'success',
+					body			: sResult,
+					bodyOutputType	: 'trustedHtml'
+				});
+			}
+			else
+			{
+				//toaster.pop('error', 'attaque raté', sResult);
+				toaster.pop
+				({
+					type			: 'error',
+					body			: sResult,
+					bodyOutputType	: 'trustedHtml'
+				});
+			}
 		}
 		else
 		{
-console.log('bah merde...');
+			toaster.pop('warning', 'Erreur', 'Cible non attaquable');
 		}
 
 		nextTroop();
