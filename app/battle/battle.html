@@ -31,8 +31,10 @@
 	href		= ""
 	data-cost	= "0"
 	data-unit	= "true"
+	data-team	= "{{troop.team}}"
 	ng-repeat	= "(id, troop) in battle.map.troop"
 	ng-if		= "x==troop.x && y==troop.y"
+	ng-click	= "battle.selectAtt($event)"
 />
 	<img
 		alt			= "{{troop.name}}"
