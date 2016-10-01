@@ -1,0 +1,48 @@
+{
+	"size"	:
+	{
+		"x"	: 5,
+		"y"	: 5
+	},
+	"object"	:
+	[
+	],
+	"army"	:
+	[
+		{
+			"player"	: "Phredd"
+		},
+		{
+			"player"	: "Tristan"
+		}
+	],
+	"troop"	:
+	[
+		{
+			"team"		: 0,
+			"name" 		: "orc1",
+			"img" 		: 6,
+			"x"			: 1,
+			"y"			: 4,
+			"att"		: 90,
+			"def"		: 10,
+			"pv"		: 5,
+			"armor"		: 1,
+			"damage"	: 10,
+			"move"		: 5
+		},
+		{
+			"team"		: 1,
+			"name" 		: "Legolas",
+			"img" 		: 5,
+			"x"			: 5,
+			"y"			: 5,
+			"att"		: 90,
+			"def"		: 10,
+			"pv"		: 5,
+			"armor"		: 1,
+			"damage"	: 10,
+			"move"		: 5
+		}
+	]
+}

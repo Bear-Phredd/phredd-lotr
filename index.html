@@ -12,11 +12,9 @@
 	</head>
 	<body ng-app="lotr">
 
-<div class="container-fluid">
-	<header class="row">
-		<nav id="nav-top" class="col-sm-12"ng-include="'tpl/nav/top.html'"></nav>
-	</header>
+<header ng-include="'tpl/nav/top.html'"></header>
 
+<div class="container-fluid">
 	<div class="row">
 		<nav id="nav-left" class="col-sm-12 col-md-2" ng-include="'tpl/nav/left.html'"></nav>
 		<div id="main" class="col-sm-12 col-md-8" ui-view></div>

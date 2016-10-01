@@ -7,6 +7,7 @@ var oOption =
 	controller	:
 	[
 		'$compile',
+		'$http',
 		'toaster',
 		battleController,
 	],
@@ -18,75 +19,46 @@ var aRequire	=
 	'ui.router',
 ];
 
-function battleController($compile, toaster)
+
+function battleController($compile, $http, toaster)
 {
-	var oMap	=
+	function prepareMap(oMap)
 	{
-		size	:
+		// Prepare map size for ngRepeat
+		var aX	= new Array();
+		for (var i=1; i<=oMap.size.x; i++)
 		{
-			x	: 5,
-			y	: 5,
-		},
-		object	:
-		[
-		],
-		army	:
-		[
-			{
-				player	: 'Phredd',
-			},
-			{
-				player	: 'Tristan',
-			},
-		],
-		troop	:
-		[
-			{
-				team	: 0,
-				name 	: "orc1",
-				img 	: 6,
-				x		: 1,
-				y		: 4,
-				att		: 90,
-				def		: 10,
-				pv		: 5,
-				armor	: 1,
-				damage	: 10,
-				move	: 5
-			},
-			{
-				team	: 1,
-				name 	: "Legolas",
-				img 	: 5,
-				x		: 5,
-				y		: 5,
-				att		: 90,
-				def		: 10,
-				pv		: 5,
-				armor	: 1,
-				damage	: 10,
-				move	: 5
-			},
-		],
-	};
+			aX.push(i);
+		}
+		oMap.size.arrayX	= aX;
 
-	// Prepare map size for ngRepeat
-	var aX	= new Array();
-	for (var j=1; j<=oMap.size.x; j++)
-	{
-		aX.push(j);
+		var aY	= new Array();
+		for (var i=1; i<=oMap.size.y; i++)
+		{
+			aY.push(i);
+		}
+		oMap.size.arrayY	= aY;
+
+		// Add troop count for loop
+		oMap.iTroopCount	= oMap.troop.length;
+		oMap.iCount	= [0, 0];
+
+		for(var i=0; i<oMap.iTroopCount; i++)
+		{
+			if(oMap.troop[i].team==1)
+				oMap.iCount[1]++;
+			else if(oMap.troop[i].team==0)
+				oMap.iCount[0]++;
+			else
+				console.warn('ERROR : prepare map');
+
+		}
+
+		// Init first troop
+		oMap.iSelectedTroop		= 0;
+
+		return oMap;
 	}
-	oMap.size.arrayX	= aX;
-
-	var aY	= new Array();
-	for (var j=1; j<=oMap.size.y; j++)
-	{
-		aY.push(j);
-	}
-	oMap.size.arrayY	= aY;
-
-	var aSearchedCells		= [];
-	var aAttackableCells	= [];
 
 	function getNeighbour(iX, iY, iMove)
 	{
@@ -152,11 +124,12 @@ function battleController($compile, toaster)
 	{
 		aSearchedCells.push(iX + '/' + iY);
 		aAttackableCells.push(iX + '/' + iY);	
-		angular.element(dCell).addClass('attackable');
+		angular.element(dCell).children().children().addClass('attackable');
 	}
 
 	function handleNeighbour(iX, iY, iMove)
 	{
+		// already explored
 		if (isFoundNeighbour(iX, iY))
 			return;
 
@@ -164,7 +137,7 @@ function battleController($compile, toaster)
 		var bUnit	= angular.element(dCell).children().attr('data-unit');
 		var iTeam1	= angular.element(dCell).children().attr('data-team');
 		var iCost	= getCost(dCell);
-		var iTeam2	= oMap.troop[iSelectedTroop].team;
+		var iTeam2	= oMap.troop[oMap.iSelectedTroop].team;
 
 		if(bUnit == 'true' && iTeam1!=iTeam2)
 			addAttackable(iX, iY, dCell);
@@ -180,44 +153,50 @@ function battleController($compile, toaster)
 
 	function getCost(dCell)
 	{
-			var iCost	= angular.element(dCell).children().attr('data-cost');
+		var iCost	= angular.element(dCell).children().attr('data-cost');
 
-			// Empty cell
-			if(typeof iCost == 'undefined')
-				return 1;
-			// Intraversable
-			else if(iCost==0)
-				return 1000;
+		// Empty cell
+		if(typeof iCost == 'undefined')
+			return 1;
+		// Intraversable
+		else if(iCost==0)
+			return 1000;
 
-			return iCost;
+		return iCost;
 	}
 
 	function showMove()
 	{
-
-		var iX		= oMap.troop[iSelectedTroop].x;
-		var iY		= oMap.troop[iSelectedTroop].y;
-		var iMove	= oMap.troop[iSelectedTroop].move;
+		var iCur	= oMap.iSelectedTroop;
+		var iX		= oMap.troop[iCur].x;
+		var iY		= oMap.troop[iCur].y;
+		var iMove	= oMap.troop[iCur].move;
 
 		getNeighbour(iX, iY, iMove);
 	}
 
 	function selectTroop()
 	{
+		var iCur	= oMap.iSelectedTroop;
+
+		// add class selected on next troop
+		if(typeof oMap.troop[iCur] !== 'undefined')
+			oMap.troop[iCur].class	= 'selected';
+		else
+		{
+			oMap.iSelectedTroop--;
+			selectTroop();
+		}
+
 		// clean prev turn marked cells
 		var jAll	= document.querySelectorAll('.cell');
 
-		angular.element(jAll).removeClass('selected');
 		angular.element(jAll).removeClass('reachable');
-		angular.element(jAll).removeClass('attackable');
+		angular.element(jAll).children().children().removeClass('attackable');
 
 		// get troop coords
-		var iX		= oMap.troop[iSelectedTroop].x;
-		var iY		= oMap.troop[iSelectedTroop].y;
-	
-		// Add mark on selected troop
-		var dCell	= document.querySelector('[data-x="'+iX+'"][data-y="'+iY+'"]');
-		angular.element(dCell).addClass('selected');
+		var iX		= oMap.troop[iCur].x;
+		var iY		= oMap.troop[iCur].y;
 
 		showMove();
 	}
@@ -230,19 +209,20 @@ function battleController($compile, toaster)
 		if(jSelectedDest.hasClass('reachable'))
 		{
 			// get troop coords
-			var iX		= jSelectedDest.attr('data-x');
-			var iY		= jSelectedDest.attr('data-y');
-			oMap.troop[iSelectedTroop].x	= iX;
-			oMap.troop[iSelectedTroop].y	= iY;
+			var iX				= jSelectedDest.attr('data-x');
+			var iY				= jSelectedDest.attr('data-y');
+			var iCur			= oMap.iSelectedTroop;
+			oMap.troop[iCur].x	= iX;
+			oMap.troop[iCur].y	= iY;
 		
 			// Add mark on selected troop
 			var jAll	= document.querySelectorAll('.cell');
 
-			angular.element(jAll).removeClass('selected');
+//			angular.element(jAll).removeClass('selected');
 			angular.element(jAll).removeClass('reachable');
 
 			var dCell	= document.querySelector('[data-x="'+iX+'"][data-y="'+iY+'"]');
-			angular.element(dCell).addClass('selected');
+//			angular.element(dCell).addClass('selected');
 		}
 
 		if(!aAttackableCells.length)
@@ -256,13 +236,13 @@ function battleController($compile, toaster)
 		var jSelectedDest	= angular.element(e.target);
 
 		// attack
-		if(jSelectedDest.parent().parent().hasClass('attackable'))
+		if(jSelectedDest.hasClass('attackable'))
 		{
 			var bSuccess	= false;
 			var sResult		= '';
-
-			var sAtt		= oMap.troop[iSelectedTroop].name;
-			var iAtt		= oMap.troop[iSelectedTroop].att;
+			var iCur		= oMap.iSelectedTroop;
+			var sAtt		= oMap.troop[iCur].name;
+			var iAtt		= oMap.troop[iCur].att;
 			var iRoll		= Math.floor((Math.random() * 100) + 1);
 
 			if(iRoll <= iAtt)
@@ -282,7 +262,7 @@ function battleController($compile, toaster)
 				{
 					sResult		+= sDef + 'rate sa parade avec un jet de dès de ' + iRoll + '<br />';
 					bSuccess	= true;
-					var iDmg	= oMap.troop[iSelectedTroop].damage;
+					var iDmg	= oMap.troop[iCur].damage;
 					iDmg		= Math.floor((Math.random() * iDmg) + 1);
 					sResult		+= sAtt + ' inflige ' + iDmg + ' point de dégat<br />';
 
@@ -294,7 +274,7 @@ function battleController($compile, toaster)
 					if(iArmor > iDmg)
 						var iWound	= 0;
 
-					sResult		+= sAtt + ' perd ' + iWound + ' point de vie<br />';
+					sResult		+= sDef + ' perd ' + iWound + ' point de vie<br />';
 
 					var iPv		= oMap.troop[iId].pv;
 					oMap.troop[iId].pv	-= +iWound;
@@ -303,8 +283,16 @@ function battleController($compile, toaster)
 						sResult		+= 'Il reste ' + oMap.troop[iId].pv + ' PdV a ' + sDef + '<br />';
 					else
 					{
+						var iTeam	= oMap.troop[iId].team;
 						sResult		+= sDef + ' succombe a ses blessures<br />';
 						oMap.troop.splice(iId, 1);
+						oMap.iTroopCount--;
+						oMap.iCount[iTeam]--;
+
+						if(oMap.iCount[iTeam] == 0)
+						{
+							alert('Equipe ' + iTeam + ' est vaincue !')
+						}
 					}
 				}
 			}
@@ -344,36 +332,61 @@ function battleController($compile, toaster)
 
 	function nextTroop()
 	{
+		// remove all classes
 		var jAll	= document.querySelectorAll('.cell');
 
-		angular.element(jAll).removeClass('selected');
 		angular.element(jAll).removeClass('reachable');
 		angular.element(jAll).removeClass('attackable');
+		aAttackableCells	= [];
+
+		// remove class selected on current troop;
+		var iCur	= oMap.iSelectedTroop;
+		if(typeof oMap.troop[iCur] !== 'undefined')
+			oMap.troop[iCur].class	= '';
 
 		// next troop
-		iSelectedTroop++;
+		oMap.iSelectedTroop++;
 
-		if(iSelectedTroop == iTroopCount)
-			iSelectedTroop	= 0;
+		// Last troop reached
+		if(oMap.iSelectedTroop == oMap.iTroopCount)
+			oMap.iSelectedTroop	= 0;
 
-		selectTroop(iSelectedTroop);
+		selectTroop();
 	}
 
-	// Send info to the view
-	this.map	= oMap;
+	// Init battle
+	var self				= this;
+	var aSearchedCells		= [];
+	var aAttackableCells	= [];
+	var oMap				= {};
+
+	$http.post(oConfig.oSource.pBattle).then
+	(
+		function successCallback(response)
+		{
+			oMap				= response.data;
+			oMap				= prepareMap(oMap);
+			oMap.iTroopCount	= oMap.troop.length;
+
+			// Send map to the view
+			self.map	= oMap;
+
+			// launch game
+			setTimeout(selectTroop,100);
+		},
+		function errorCallback(response)
+		{
+			console.error('battleController => errorCallback', response)
+		}
+	);
 
 	// public function
 	this.selectDest		= selectDest;
 	this.selectAtt		= selectAtt;
-
-	// Init battle
-	var iTroopCount		= oMap.troop.length;
-	var iSelectedTroop	= 0;
-
-	setTimeout(selectTroop, 300);
 }
 
 app.controller('battleController', aRequire);
+//app.service('battleData', battleData);
 app.component('battle', oOption);
 
 if(oConfig.bDebug)

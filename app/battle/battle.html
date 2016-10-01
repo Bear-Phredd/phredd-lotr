@@ -1,5 +1,11 @@
 <h1>Bataille</h1>
 
+cur troop : {{battle.map.iSelectedTroop}} 
+/
+cur troop : {{battle.map.iSelectedTroop.name}} 
+/
+troop count : {{battle.map.iTroopCount}}
+/
 <table id="map">
 	<tr>
 		<th>0</th>
@@ -38,7 +44,7 @@
 />
 	<img
 		alt			= "{{troop.name}}"
-		class		= "team{{troop.team}}"
+		class		= "team{{troop.team}} {{troop.class}}"
 		data-id		= "{{id}}"
 		uib-tooltip			= "{{troop.name}}"
 		ng-src		= "/img/race/{{troop.img}}.png"
