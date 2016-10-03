@@ -51,8 +51,13 @@ function battleController($compile, $http, toaster)
 				oMap.iCount[0]++;
 			else
 				console.warn('ERROR : prepare map');
-
 		}
+
+		// Add logger
+		oMap.logs	= [ [], [] ];
+
+		// popover template name
+		oMap.sTroopInfo			= 'troop-info.html';
 
 		// Init first troop
 		oMap.iSelectedTroop		= 0;
@@ -239,15 +244,16 @@ function battleController($compile, $http, toaster)
 		if(jSelectedDest.hasClass('attackable'))
 		{
 			var bSuccess	= false;
-			var sResult		= '';
+			var aResult		= [];
 			var iCur		= oMap.iSelectedTroop;
 			var sAtt		= oMap.troop[iCur].name;
 			var iAtt		= oMap.troop[iCur].att;
+			var iTeamAtt	= oMap.troop[iCur].team;
 			var iRoll		= Math.floor((Math.random() * 100) + 1);
 
 			if(iRoll <= iAtt)
 			{
-				sResult	+= sAtt + 'reussi son attaque avec un jet de dès de ' + iRoll + '<br />';
+				aResult.push('[' + iRoll + '] ' + sAtt + ' reussi son attaque');
 
 				var iId		= jSelectedDest.attr('data-id');
 				var sDef	= oMap.troop[iId].name;
@@ -256,71 +262,70 @@ function battleController($compile, $http, toaster)
 				iRoll	= Math.floor((Math.random() * 100) + 1);
 				if(iRoll <= iDef)
 				{
-					sResult	+= sDef + 'reussi sa parade avec un jet de dès de ' + iRoll + '<br />';
+					aResult.push('[' + iRoll + '] ' + sDef + ' reussi sa parade');
 				}
 				else
 				{
-					sResult		+= sDef + 'rate sa parade avec un jet de dès de ' + iRoll + '<br />';
+					aResult.push('[' + iRoll + '] ' + sDef + ' rate sa parade');
+
 					bSuccess	= true;
 					var iDmg	= oMap.troop[iCur].damage;
 					iDmg		= Math.floor((Math.random() * iDmg) + 1);
-					sResult		+= sAtt + ' inflige ' + iDmg + ' point de dégat<br />';
+
+					aResult.push(sAtt + ' inflige ' + iDmg + ' point de dégat');
 
 					var iArmor	= oMap.troop[iId].armor;
 					iArmor		= Math.floor((Math.random() * iArmor) + 1);
-					sResult		+= "l'armure de " + sDef + ' le protège de ' + iArmor + '<br />';
+
+					aResult.push("l'armure de " + sDef + ' le protège de ' + iArmor);
 
 					var iWound	= +iDmg -iArmor
 					if(iArmor > iDmg)
 						var iWound	= 0;
 
-					sResult		+= sDef + ' perd ' + iWound + ' point de vie<br />';
-
-					var iPv		= oMap.troop[iId].pv;
-					oMap.troop[iId].pv	-= +iWound;
-
-					if(oMap.troop[iId].pv > 0)
-						sResult		+= 'Il reste ' + oMap.troop[iId].pv + ' PdV a ' + sDef + '<br />';
-					else
+					if(iWound)
 					{
-						var iTeam	= oMap.troop[iId].team;
-						sResult		+= sDef + ' succombe a ses blessures<br />';
-						oMap.troop.splice(iId, 1);
-						oMap.iTroopCount--;
-						oMap.iCount[iTeam]--;
+						aResult.push(sDef + ' perd ' + iWound + ' point de vie');
 
-						if(oMap.iCount[iTeam] == 0)
+						var iPv		= oMap.troop[iId].pv;
+						oMap.troop[iId].pv	-= +iWound;
+
+						if(oMap.troop[iId].pv > 0)
+							aResult.push('Il reste ' + oMap.troop[iId].pv + ' PdV a ' + sDef);
+						else
 						{
-							alert('Equipe ' + iTeam + ' est vaincue !')
+							var iTeam	= oMap.troop[iId].team;
+
+							aResult.push(sDef + ' succombe a ses blessures.');
+
+							oMap.troop.splice(iId, 1);
+							oMap.iTroopCount--;
+							oMap.iCount[iTeam]--;
+
+							if(oMap.iCount[iTeam] == 0)
+							{
+								alert('Equipe ' + iTeam + ' est vaincue !')
+							}
 						}
 					}
 				}
 			}
 			else
 			{
-				sResult	+= sAtt + 'rate son attaque avec un jet de dès de ' + iRoll + '<br />';
+				aResult.push('[' + iRoll + '] ' + sAtt + ' rate son attaque');
 			}
 
+			var sType	= 'fail';
 			if(bSuccess)
+				sType	= 'pass';
+
+			var oLog	=
 			{
-				//toaster.pop('success', 'attaque reussie', sResult);
-				toaster.pop
-				({
-					type			: 'success',
-					body			: sResult,
-					bodyOutputType	: 'trustedHtml'
-				});
-			}
-			else
-			{
-				//toaster.pop('error', 'attaque raté', sResult);
-				toaster.pop
-				({
-					type			: 'error',
-					body			: sResult,
-					bodyOutputType	: 'trustedHtml'
-				});
-			}
+				type	: sType,
+				text	: aResult,
+			};
+
+			oMap.logs[iTeamAtt].push(oLog);
 		}
 		else
 		{

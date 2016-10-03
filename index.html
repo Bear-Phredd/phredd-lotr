@@ -14,17 +14,16 @@
 
 <header ng-include="'tpl/nav/top.html'"></header>
 
-<div class="container-fluid">
-	<div class="row">
-		<nav id="nav-left" class="col-sm-12 col-md-2" ng-include="'tpl/nav/left.html'"></nav>
-		<div id="main" class="col-sm-12 col-md-8" ui-view></div>
-		<nav id="nav-right" class="col-sm-12 col-md-2" ng-include="'tpl/nav/right.html'"></nav>
-	</div>
-
-	<footer class="row">
-		<nav id="nav-bottom" class="col-sm-12"ng-include="'tpl/nav/bottom.html'"></nav>
-	</footer>
+<div
+	id		= "main"
+	class	= "container-fluid"
+	ui-view
+>
 </div>
+
+<footer class="row">
+	<nav id="nav-bottom" class="col-sm-12"ng-include="'tpl/nav/bottom.html'"></nav>
+</footer>
 
 <script src="src/angular/1.5.8/angular.js"></script>
 <script src="src/angular/1.5.8/angular-cookies.min.js"></script>

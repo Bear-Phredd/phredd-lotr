@@ -1,108 +1,165 @@
 BODY
 {
-	background	: #030303;
-	color		: #FAFAFA;
-	//padding-top	: 60px;
-	//overflow	: hidden;
+	background					: #030303;
+	color						: #FAFAFA;
+	font-size					: 1.4em;
+	padding-top					: 60px;
+	//overflow					: hidden;
 }
 
 #nav-top
 {
-	height		: 60px;
-	background	: #030303;
+	height						: 60px;
+	background					: #030303;
+	font-size					: 2em;
 }
 
 #logo
 {
-	padding		: 10px;
-}
-
-#nav-left
-{
-	margin-top	: 80px;
-}
-
-#nav-left UL
-{
+	padding						: 10px;
 }
 
 #main
 {
-	margin-top	: 60px;
-	overflow	: auto;
-}
-
-#nav-right
-{
-	margin-top	: 60px;
+	overflow					: auto;
 }
 
 #nav-bottom
 {
-	position	: fixed;
-	bottom		: 0;
-	left		: 0;
-	height		: 20px;
+	position					: fixed;
+	bottom						: 0;
+	left						: 0;
+	height						: 20px;
+}
+
+#team0-logs,
+#team1-logs
+{
+	overflow-x					: hidden;
+	overflow-y					: auto;
+	height						: 400px;
+	margin-top					: 10px;
+	padding						: 5px;
+	border						: 1px solid #666666;
+}
+
+#team0-logs .fail,
+#team1-logs .fail
+{
+	margin-bottom				: 5px;
+	padding						: 5px;
+	color						: #030303;
+	background					: #BBAAAA;
+}
+
+#team0-logs .pass,
+#team1-logs .pass
+{
+	margin-bottom				: 5px;
+	padding						: 5px;
+	color						: #030303;
+	background					: #AABBAA;
+}
+
+#team0-logs UL,
+#team1-logs UL
+{
+	margin-bottom				: 0;
+}
+
+#team0-logs LI,
+#team1-logs LI
+{
+	margin-bottom				: 5px;
+}
+
+#team0-logs LI:last-child,
+#team1-logs LI:last-child
+{
+	margin-bottom				: 0;
+}
+
+#team0 .team0,
+#team1 .team1
+{
+	padding						: 5px;
+	text-align					: center;
+	font-weight					: bold;
+	border-radius				: 5px;
 }
 
 #map
 {
-	overflow	: auto;
-	background	: #B7CA79;
+	overflow					: auto;
+	background					: #B7CA79;
 }
 
 #map TH
 {
-	background	: #666666;
-	text-align	: center;
-}
-
-.line
-{
+	background					: #666666;
+	text-align					: center;
 }
 
 .cell
 {
-	width		: 50px;
-	height		: 50px;
-	min-width	: 50px;
-	min-height	: 50px;
-	text-align	: center;
-	border		: 1px solid #333333;
+	width						: 50px;
+	height						: 50px;
+	min-width					: 50px;
+	min-height					: 50px;
+	text-align					: center;
+	border						: 1px solid #333333;
 }
 
 .cell IMG
 {
-	width		: 50px;
-	height		: 50px;
+	width						: 50px;
+	height						: 50px;
 }
 
 .team0
 {
-	color		; #666666;
-	background	: #F6E8B1;
+	color						: #030303;
+	background					: #F6E8B1;
 }
 
 .team1
 {
-	color		; #666666;
-	background	: #89725B;
+	color						: #FAFAFA;
+	background					: #89725B;
 }
 
 .selected
 {
-	background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(0,0,0,.5) 10px, rgba(0,0,0,.5) 20px);
+	background-image				: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(0,0,0,.5) 10px, rgba(0,0,0,.5) 20px);
 
 }
 
 .reachable
 {
-	cursor		: pointer;
-	background	: #B0CC99;
+	cursor						: pointer;
+	background					: #B0CC99;
 }
 
 .attackable
 {
-	cursor		: pointer;
-	background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,0,0,.5) 10px, rgba(255,0,0,.5) 20px);
+	cursor						: pointer;
+	background-image				: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,0,0,.5) 10px, rgba(255,0,0,.5) 20px);
+}
+
+/* bootstrap */
+.popover-title
+{
+	color						: #030303;
+	font-size					: 1.6em;
+}
+.popover-content
+{
+	color						: #030303;
+	font-size					: 1.4em;
+}
+
+/* Toaster */
+.toaster
+{
+	font=size					: 1.2em;
 }

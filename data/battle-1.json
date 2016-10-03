@@ -26,8 +26,8 @@
 			"y"			: 4,
 			"att"		: 90,
 			"def"		: 10,
-			"pv"		: 5,
-			"armor"		: 1,
+			"pv"		: 500,
+			"armor"		: 20,
 			"damage"	: 10,
 			"move"		: 5
 		},
@@ -39,8 +39,8 @@
 			"y"			: 5,
 			"att"		: 90,
 			"def"		: 10,
-			"pv"		: 5,
-			"armor"		: 1,
+			"pv"		: 500,
+			"armor"		: 20,
 			"damage"	: 10,
 			"move"		: 5
 		}

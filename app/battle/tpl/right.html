@@ -1,0 +1,19 @@
+<div class="team1">
+	{{battle.map.army[1].player}}
+</div>
+
+<div id="team1-logs">
+	<div ng-repeat="oLog in battle.map.logs[1] | orderBy:'+':true">
+		<div class="{{oLog.type}}">
+
+<ul class="list-unstyled">
+	<li ng-repeat="text in oLog.text">{{text}}</li>
+</ul>
+
+		</div>
+	</div>
+</div>
+
+<div id="team1-info">
+	{{battle.team1-info}}
+</div>

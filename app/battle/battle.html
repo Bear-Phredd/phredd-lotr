@@ -1,51 +1,20 @@
-<h1>Bataille</h1>
-
-<table id="map">
-	<tr>
-		<th>0</th>
-		<th ng-repeat="x in battle.map.size.arrayX">{{x}}</th>
-	</tr>
-	<tr class="line" ng-repeat="y in battle.map.size.arrayY">
-		<th>{{y}}</th>
-		<td
-			class		= "cell"
-			data-x		= "{{x}}"
-			data-y		= "{{y}}"
-			ng-repeat	= "x in battle.map.size.arrayX"
-			ng-click	= "battle.selectDest($event)"
-		>
-
-<span 
-	data-cost	= "{{object.cost}}"
-	ng-repeat	= "object in battle.map.object"
-	ng-if		= "x==object.x && y==object.y"
-/>
-	<img
-		alt			= "{{object.type}}"
-		ng-src		= "/img/object/{{object.type}}.png"
-		uib-tooltip	= "{{object.type}} cost:{{object.cost}}"
-	/>
-</span>
-
-<a 
-	href		= ""
-	data-cost	= "0"
-	data-unit	= "true"
-	data-team	= "{{troop.team}}"
-	ng-repeat	= "(id, troop) in battle.map.troop"
-	ng-if		= "x==troop.x && y==troop.y"
-	ng-click	= "battle.selectAtt($event)"
-/>
-	<img
-		alt			= "{{troop.name}}"
-		class		= "team{{troop.team}} {{troop.class}}"
-		data-id		= "{{id}}"
-		uib-tooltip			= "{{troop.name}}"
-		ng-src		= "/img/race/{{troop.img}}.png"
-	/>
-	<!--uib-tooltip-html	= "{{troop.name}}<br /> déplacement:{{troop.move}} -->
-</a>
-
-		</td>
-	</tr>
-</table>
+<div class="row">
+	<div
+		id			= "team0"
+		class		= "col-sm-12 col-md-2"
+		ng-include	= "'app/battle/tpl/left.html'"
+	>
+	</div>
+	<div
+		id			= "main"
+		class		= "col-sm-12 col-md-8"
+		ng-include	= "'app/battle/tpl/map.html'"
+	>
+	</div>
+	<div
+		id			= "team1"
+		class		= "col-sm-12 col-md-2"
+		ng-include	= "'app/battle/tpl/right.html'"
+	>
+	</div>
+</div>
