@@ -3,10 +3,12 @@
 </div>
 
 <div id="team1-logs">
-	<div ng-repeat="oLog in battle.map.logs[0] | orderBy:'+':true">
+	<div ng-repeat="(iId, oLog) in battle.map.logs[0] | orderBy:'+':true">
 		<div class="{{oLog.type}}">
 
-<ul class="list-unstyled">
+<span class="logs-title" ng-click="oLog.hide=!oLog.hide">{{oLog.title}}</span>
+
+<ul class="list-unstyled" ng-hide="oLog.hide">
 	<li ng-repeat="text in oLog.text">{{text}}</li>
 </ul>
 

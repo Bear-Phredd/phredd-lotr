@@ -271,7 +271,7 @@ function battleController($compile, $http, toaster)
 						{
 							var iTeam	= oMap.troop[iId].team;
 
-							aResult.push(sDef + ' succombe a ses blessures.');
+							aResult.push(sDef + ' succombe à ses blessures.');
 
 							oMap.troop.splice(iId, 1);
 							oMap.iTroopCount--;
@@ -291,12 +291,18 @@ function battleController($compile, $http, toaster)
 			}
 
 			var sType	= 'fail';
+			var sTitle	= 'attaque echouée';
 			if(bSuccess)
+			{
 				sType	= 'pass';
+				sTitle	= 'attaque réussie';
+			}
 
 			var oLog	=
 			{
 				type	: sType,
+				hide	: true,
+				title	: sTitle,
 				text	: aResult,
 			};
 

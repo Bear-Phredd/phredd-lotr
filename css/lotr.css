@@ -39,25 +39,28 @@ BODY
 	overflow-y					: auto;
 	height						: 400px;
 	margin-top					: 10px;
+	border						: 1px solid #FAFAFA;
+}
+
+#team0-logs .fail,
+#team1-logs .fail,
+#team0-logs .pass,
+#team1-logs .pass
+{
 	padding						: 5px;
-	border						: 1px solid #666666;
+	color						: #030303;
+	border-bottom				: 1px solid #FAFAFA;
 }
 
 #team0-logs .fail,
 #team1-logs .fail
 {
-	margin-bottom				: 5px;
-	padding						: 5px;
-	color						: #030303;
 	background					: #BBAAAA;
 }
 
 #team0-logs .pass,
 #team1-logs .pass
 {
-	margin-bottom				: 5px;
-	padding						: 5px;
-	color						: #030303;
 	background					: #AABBAA;
 }
 
@@ -83,6 +86,14 @@ BODY
 #team1-logs LI:last-child
 {
 	margin-bottom				: 0;
+}
+
+.logs-title
+{
+	display						: block;
+	cursor						: pointer;
+	font-weight					: bold;
+	text-align					: center;
 }
 
 #team0-info UL,
