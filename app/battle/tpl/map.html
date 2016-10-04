@@ -26,18 +26,15 @@
 </span>
 
 <a 
-	href					= ""
-	data-cost				= "0"
-	data-unit				= "true"
-	data-team				= "{{troop.team}}"
-	uib-popover-template	= "battle.map.sTroopInfo"
-	popover-title			= "{{troop.name}} [{{troop.team}}] ({{troop.x}}/{{troop.y}})"
-	popover-trigger			= "'mouseenter'"
-	popover-placement		= "right"
-	popover-append-to-body	= "#team{{troop.team}}-info"
-	ng-repeat				= "(id, troop) in battle.map.troop"
-	ng-if					= "x==troop.x && y==troop.y"
-	ng-click				= "battle.selectAtt($event)"
+	href			= ""
+	data-cost		= "0"
+	data-unit		= "true"
+	data-team		= "{{troop.team}}"
+	ng-repeat		= "(id, troop) in battle.map.troop"
+	ng-if			= "x==troop.x && y==troop.y"
+	ng-mouseover	= "battle.displayUnitInfo(id)"
+	ng-mouseleave	= "battle.clearUnitInfo()"
+	ng-click		= "battle.selectAtt($event)"
 />
 	<img
 		alt			= "{{troop.name}}"
@@ -45,19 +42,7 @@
 		data-id		= "{{id}}"
 		ng-src		= "/img/race/{{troop.img}}.png"
 	/>
-	<!--uib-tooltip-html	= "{{troop.name}}<br /> déplacement:{{troop.move}} -->
 </a>
-
-<script type="text/ng-template" id="troop-info.html">
-	<ul>
-		<li>Attaque 		: {{troop.att}}%</li>
-		<li>Défense			: {{troop.def}}%</li>
-		<li>Points de vie	: {{troop.pv}}</li>
-		<li>Armure			: 1-{{troop.armor}}</li>
-		<li>Dommage			: 1-{{troop.damage}}</li>
-		<li>Mouvement		: {{troop.move}} case(s)</li>
-	</ul>
-</script>
 
 		</td>
 	</tr>

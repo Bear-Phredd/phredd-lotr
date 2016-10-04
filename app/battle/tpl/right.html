@@ -15,5 +15,14 @@
 </div>
 
 <div id="team1-info">
-	{{battle.team1-info}}
+	<div class="team1">{{battle.info[1].name}}</div>
+
+	<ul>
+		<li>Attaque 		: {{battle.info[1].att}}%</li>
+		<li>Défense			: {{battle.info[1].def}}%</li>
+		<li>Points de vie	: {{battle.info[1].pv}}</li>
+		<li>Armure			: 1-{{battle.info[1].armor}}</li>
+		<li>Dommage			: 1-{{battle.info[1].damage}}</li>
+		<li>Mouvement		: {{battle.info[1].move}} case(s)</li>
+	</ul>
 </div>

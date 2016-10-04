@@ -14,6 +14,15 @@
 	</div>
 </div>
 
-<div id="team0-info">
-	{{battle.team0-info}}
+<div id="team0-info" ng-show="battle.info[0].name">
+	<div class="team0">{{battle.info[0].name}}</div>
+
+	<ul>
+		<li>Attaque 		: {{battle.info[0].att}}%</li>
+		<li>Défense			: {{battle.info[0].def}}%</li>
+		<li>Points de vie	: {{battle.info[0].pv}}</li>
+		<li>Armure			: 1-{{battle.info[0].armor}}</li>
+		<li>Dommage			: 1-{{battle.info[0].damage}}</li>
+		<li>Mouvement		: {{battle.info[0].move}} case(s)</li>
+	</ul>
 </div>

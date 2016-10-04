@@ -1,25 +1,5 @@
 'use strict';
 
-var oOption =
-{
-	templateUrl	: 'app/battle/battle.html',
-	bindings	: {},
-	controller	:
-	[
-		'$compile',
-		'$http',
-		'toaster',
-		battleController,
-	],
-	controllerAs	: 'battle',
-};
-
-var aRequire	=
-[
-	'ui.router',
-];
-
-
 function battleController($compile, $http, toaster)
 {
 	function prepareMap(oMap)
@@ -55,9 +35,6 @@ function battleController($compile, $http, toaster)
 
 		// Add logger
 		oMap.logs	= [ [], [] ];
-
-		// popover template name
-		oMap.sTroopInfo			= 'troop-info.html';
 
 		// Init first troop
 		oMap.iSelectedTroop		= 0;
@@ -96,9 +73,7 @@ function battleController($compile, $http, toaster)
 		iY++;
 
 		if (iY<=oMap.size.y)
-		{
 			handleNeighbour(iX, iY, iMove);
-		}
 	}
 
 	function getNorthNeighbour(iX, iY, iMove)
@@ -359,11 +334,26 @@ function battleController($compile, $http, toaster)
 		selectTroop();
 	}
 
+	// Affichage des informations d'une unité (onMouseOver)
+	function displayUnitInfo(iUnitId)
+	{
+		var oTroop				= oMap.troop[iUnitId];
+		aInfo[(oTroop.team)]	= oTroop;
+	}
+
+	// Suppression des informations d'une unité (onMouseLeave)
+	function clearUnitInfo()
+	{
+		aInfo		= ['', ''];
+		this.info				= aInfo;
+	}
+
 	// Init battle
 	var self				= this;
 	var aSearchedCells		= [];
 	var aAttackableCells	= [];
 	var oMap				= {};
+	var aInfo				= ['', ''];
 
 	$http.post(oConfig.oSource.pBattle).then
 	(
@@ -385,13 +375,39 @@ function battleController($compile, $http, toaster)
 		}
 	);
 
+	// send to view
+	this.info				= aInfo;
+
 	// public function
-	this.selectDest		= selectDest;
-	this.selectAtt		= selectAtt;
+	this.selectDest			= selectDest;
+	this.selectAtt			= selectAtt;
+	this.displayUnitInfo	= displayUnitInfo;
+	this.clearUnitInfo		= clearUnitInfo;
 }
 
+var aRequire	=
+[
+	'ui.router',
+];
+
 app.controller('battleController', aRequire);
+
 //app.service('battleData', battleData);
+
+var oOption =
+{
+	templateUrl	: 'app/battle/battle.html',
+	bindings	: {},
+	controller	:
+	[
+		'$compile',
+		'$http',
+		'toaster',
+		battleController,
+	],
+	controllerAs	: 'battle',
+};
+
 app.component('battle', oOption);
 
 if(oConfig.bDebug)

@@ -61,6 +61,12 @@ BODY
 	background					: #AABBAA;
 }
 
+#team0-logs,
+#team1-logs
+{
+	margin-bottom				: 10px;
+}
+
 #team0-logs UL,
 #team1-logs UL
 {
@@ -77,6 +83,12 @@ BODY
 #team1-logs LI:last-child
 {
 	margin-bottom				: 0;
+}
+
+#team0-info UL,
+#team1-info UL
+{
+	margin-top					: 10px;
 }
 
 #team0 .team0,
