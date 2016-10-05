@@ -119,12 +119,12 @@ function battleController($compile, $http, toaster)
 		var iCost	= getCost(dCell);
 		var iTeam2	= oMap.troop[oMap.iSelectedTroop].team;
 
-		if(bUnit == 'true' && iTeam1!=iTeam2)
+		if(iAction == 2 && bUnit == 'true' && iTeam1!=iTeam2)
 			addAttackable(iX, iY, dCell);
 
 		iMove	-= iCost;
 
-		if(iMove>=0)
+		if(iAction == 1 && iMove>=0)
 			addReachable(iX, iY, dCell);
 
 		if(iMove>0)
@@ -152,7 +152,19 @@ function battleController($compile, $http, toaster)
 		var iY		= oMap.troop[iCur].y;
 		var iMove	= oMap.troop[iCur].move;
 
+		iAction		= 1;
 		getNeighbour(iX, iY, iMove);
+	}
+
+	function showAttack()
+	{
+		var iCur	= oMap.iSelectedTroop;
+		var iX		= oMap.troop[iCur].x;
+		var iY		= oMap.troop[iCur].y;
+		var iRange	= oMap.troop[iCur].range;
+
+		iAction		= 2;
+		getNeighbour(iX, iY, iRange);
 	}
 
 	function selectTroop()
@@ -178,7 +190,16 @@ function battleController($compile, $http, toaster)
 		var iX		= oMap.troop[iCur].x;
 		var iY		= oMap.troop[iCur].y;
 
+		//showAttack();
+
 		showMove();
+
+		//showAttack();
+
+		if(!aAttackableCells.length)
+		{
+			nextTroop();
+		}
 	}
 
 	function selectDest(e)
@@ -198,16 +219,9 @@ function battleController($compile, $http, toaster)
 			// Add mark on selected troop
 			var jAll	= document.querySelectorAll('.cell');
 
-//			angular.element(jAll).removeClass('selected');
 			angular.element(jAll).removeClass('reachable');
 
 			var dCell	= document.querySelector('[data-x="'+iX+'"][data-y="'+iY+'"]');
-//			angular.element(dCell).addClass('selected');
-		}
-
-		if(!aAttackableCells.length)
-		{
-			nextTroop();
 		}
 	}
 
@@ -360,6 +374,7 @@ function battleController($compile, $http, toaster)
 	var aAttackableCells	= [];
 	var oMap				= {};
 	var aInfo				= ['', ''];
+	var iAction				= 1;	// 1 : move; 2 : attack
 
 	$http.post(oConfig.oSource.pBattle).then
 	(
@@ -391,6 +406,7 @@ function battleController($compile, $http, toaster)
 	this.clearUnitInfo		= clearUnitInfo;
 }
 
+// Controller******************************************************************
 var aRequire	=
 [
 	'ui.router',
@@ -400,6 +416,7 @@ app.controller('battleController', aRequire);
 
 //app.service('battleData', battleData);
 
+// Component ******************************************************************
 var oOption =
 {
 	templateUrl	: 'app/battle/battle.html',

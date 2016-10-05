@@ -29,6 +29,7 @@
 			"pv"		: 500,
 			"armor"		: 20,
 			"damage"	: 10,
+			"range"		: 1,
 			"move"		: 5
 		},
 		{
@@ -42,6 +43,7 @@
 			"pv"		: 500,
 			"armor"		: 20,
 			"damage"	: 10,
+			"range"		: 1,
 			"move"		: 5
 		}
 	]

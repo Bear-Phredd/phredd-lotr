@@ -161,6 +161,7 @@
 			"pv"		: 5,
 			"armor"		: 1,
 			"damage"	: 5,
+			"range"		: 1,
 			"move"		: 5
 		},
 		{
@@ -174,6 +175,7 @@
 			"pv"		: 5,
 			"armor"		: 1,
 			"damage"	: 5,
+			"range"		: 1,
 			"move"		: 5
 		},
 		{
@@ -187,6 +189,7 @@
 			"pv"		: 5,
 			"armor"		: 1,
 			"damage"	: 5,
+			"range"		: 1,
 			"move"		: 5
 		},
 		{
@@ -200,6 +203,7 @@
 			"pv"		: 5,
 			"armor"		: 1,
 			"damage"	: 5,
+			"range"		: 1,
 			"move"		: 5
 		},
 		{
@@ -213,6 +217,7 @@
 			"pv"		: 5,
 			"armor"		: 1,
 			"damage"	: 5,
+			"range"		: 1,
 			"move"		: 5
 		},
 		{
@@ -226,6 +231,7 @@
 			"pv"		: 3,
 			"armor"		: 0,
 			"damage"	: 3,
+			"range"		: 1,
 			"move"		: 7
 		},
 		{
@@ -239,6 +245,7 @@
 			"pv"		: 3,
 			"armor"		: 0,
 			"damage"	: 3,
+			"range"		: 1,
 			"move"		: 7
 		},
 		{
@@ -252,6 +259,7 @@
 			"pv"		: 3,
 			"armor"		: 0,
 			"damage"	: 3,
+			"range"		: 1,
 			"move"		: 7
 		},
 		{
@@ -265,6 +273,7 @@
 			"pv"		: 3,
 			"armor"		: 0,
 			"damage"	: 3,
+			"range"		: 1,
 			"move"		: 7
 		},
 		{
@@ -278,6 +287,7 @@
 			"pv"		: 3,
 			"armor"		: 0,
 			"damage"	: 3,
+			"range"		: 1,
 			"move"		: 7
 		},
 		{
@@ -291,6 +301,7 @@
 			"pv"		: 20,
 			"armor"		: 5,
 			"damage"	: 10,
+			"range"		: 1,
 			"move"		: 7
 		},
 		{
@@ -304,6 +315,7 @@
 			"pv"		: 10,
 			"armor"		: 5,
 			"damage"	: 10,
+			"range"		: 1,
 			"move"		: 3
 		},
 		{
@@ -317,6 +329,7 @@
 			"pv"		: 5,
 			"armor"		: 5,
 			"damage"	: 10,
+			"range"		: 1,
 			"move"		: 3
 		},
 		{
@@ -330,6 +343,7 @@
 			"pv"		: 10,
 			"armor"		: 10,
 			"damage"	: 10,
+			"range"		: 1,
 			"move"		: 5
 		},
 		{
@@ -343,6 +357,7 @@
 			"pv"		: 5,
 			"armor"		: 2,
 			"damage"	: 8,
+			"range"		: 1,
 			"move"		: 5
 		},
 		{
@@ -356,6 +371,7 @@
 			"pv"		: 5,
 			"armor"		: 2,
 			"damage"	: 5,
+			"range"		: 1,
 			"move"		: 5
 		},
 		{
@@ -369,6 +385,7 @@
 			"pv"		: 5,
 			"armor"		: 1,
 			"damage"	: 5,
+			"range"		: 1,
 			"move"		: 6
 		},
 		{
@@ -382,6 +399,7 @@
 			"pv"		: 15,
 			"armor"		: 2,
 			"damage"	: 10,
+			"range"		: 1,
 			"move"		: 5
 		},
 		{
@@ -395,6 +413,7 @@
 			"pv"		: 5,
 			"armor"		: 10,
 			"damage"	: 5,
+			"range"		: 1,
 			"move"		: 6
 		},
 		{
@@ -408,6 +427,7 @@
 			"pv"		: 5,
 			"armor"		: 1,
 			"damage"	: 5,
+			"range"		: 1,
 			"move"		: 6
 		},
 		{
@@ -421,6 +441,7 @@
 			"pv"		: 5,
 			"armor"		: 1,
 			"damage"	: 5,
+			"range"		: 1,
 			"move"		: 6
 		},
 		{
@@ -434,6 +455,7 @@
 			"pv"		: 5,
 			"armor"		: 1,
 			"damage"	: 5,
+			"range"		: 1,
 			"move"		: 6
 		}
 	]
