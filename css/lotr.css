@@ -3,22 +3,28 @@ BODY
 	background					: #030303;
 	color						: #FAFAFA;
 	font-size					: 1.4em;
-	padding-top					: 70px;
+	//padding-top					: 70px;
 	//overflow					: hidden;
 }
 
-#nav-top
+HEADER
 {
 	height						: 60px;
-	background					: #030303;
 	font-size					: 2em;
-visibility	: hidden;
-display	: none;
 }
 
 #logo
 {
-	padding						: 10px;
+	background					: #030303;
+	padding						: 15px;
+}
+
+FOOTER
+{
+	position					: fixed;
+	bottom						: 0;
+	right						: 0;
+	padding						: 15px;
 }
 
 #main
@@ -26,19 +32,13 @@ display	: none;
 	overflow					: auto;
 }
 
-#nav-bottom
+/* Battles *******************************************************************/
+#battle-toolbar
 {
 	position					: fixed;
 	bottom						: 0;
 	left						: 0;
-	height						: 20px;
-}
-
-/* Battles *******************************************************************/
-#battle-toolbar
-{
-	background					: #030303;
-	margin-bottom				: 15px;
+	padding						: 5px;
 }
 
 #team0-logs,
@@ -47,7 +47,7 @@ display	: none;
 	overflow-x					: hidden;
 	overflow-y					: auto;
 	height						: 400px;
-	margin-top					: 0 15px;
+	margin						: 15px 0;
 	border						: 1px solid #FAFAFA;
 }
 

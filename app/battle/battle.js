@@ -160,7 +160,7 @@ function battleController($compile, $http, toaster)
 		getNeighbour(iX, iY, iMove);
 	}
 
-	function showAttack()
+	function fnShowAttack()
 	{
 		// clean prev turn marked cells
 		var jAll	= document.querySelectorAll('.cell');
@@ -175,7 +175,7 @@ function battleController($compile, $http, toaster)
 		getNeighbour(iX, iY, iRange);
 	}
 
-	function selectTroop()
+	function fnSelectTroop()
 	{
 		var iCur	= oMap.iSelectedTroop;
 
@@ -184,25 +184,19 @@ function battleController($compile, $http, toaster)
 			oMap.troop[iCur].class	= 'selected';
 		else
 		{
-			console.error('selectTroop veut selectionner une troupe absente');
+			console.error('fnSelectTroop veut selectionner une troupe absente');
 			oMap.iSelectedTroop--;
-			selectTroop();
+			fnSelectTroop();
 		}
 
 		// get troop coords
 		var iX		= oMap.troop[iCur].x;
 		var iY		= oMap.troop[iCur].y;
 
-		//showAttack();
+		fnShowAttack();
 
 		showMove();
 
-		//showAttack();
-
-		if(!aAttackableCells.length)
-		{
-			//fnNextTroop();
-		}
 	}
 
 	function selectDest(e)
@@ -220,16 +214,14 @@ function battleController($compile, $http, toaster)
 			var iCur			= oMap.iSelectedTroop;
 			oMap.troop[iCur].x	= iX;
 			oMap.troop[iCur].y	= iY;
-		
-			// Add mark on selected troop
-			/*
-			TODO : necessaire encore ?
-			var jAll	= document.querySelectorAll('.cell');
+	
 
-			angular.element(jAll).removeClass('reachable');
+			fnShowAttack();
 
-			var dCell	= document.querySelector('[data-x="'+iX+'"][data-y="'+iY+'"]');
-			*/
+			if(!aAttackableCells.length)
+			{
+				fnNextTroop();
+			}
 		}
 	}
 
@@ -335,7 +327,7 @@ function battleController($compile, $http, toaster)
 			toaster.pop('warning', 'Erreur', 'Cible non attaquable');
 		}
 
-		//fnNextTroop();
+		fnNextTroop();
 	}
 
 	function fnNextTroop()
@@ -361,7 +353,7 @@ function battleController($compile, $http, toaster)
 		if(oMap.iSelectedTroop == oMap.iTroopCount)
 			oMap.iSelectedTroop	= 0;
 
-		selectTroop();
+		fnSelectTroop();
 	}
 
 	// Affichage des informations d'une unité (onMouseOver)
@@ -398,7 +390,7 @@ function battleController($compile, $http, toaster)
 			self.map	= oMap;
 
 			// launch game
-			setTimeout(selectTroop,100);
+			setTimeout(fnSelectTroop,100);
 		},
 		function errorCallback(response)
 		{
