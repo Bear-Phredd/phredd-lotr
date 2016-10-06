@@ -6,7 +6,10 @@
 	<div ng-repeat="(iId, oLog) in battle.map.logs[0] | orderBy:'+':true">
 		<div class="{{oLog.type}}">
 
-<span class="logs-title" ng-click="oLog.hide=!oLog.hide">{{oLog.title}}</span>
+<div class="logs-title" ng-click="oLog.hide=!oLog.hide">
+	{{oLog.title}}
+	<span class="caret"></span>
+</div>
 
 <ul class="list-unstyled" ng-hide="oLog.hide">
 	<li ng-repeat="text in oLog.text">{{text}}</li>

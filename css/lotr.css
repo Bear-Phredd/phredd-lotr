@@ -12,6 +12,8 @@ BODY
 	height						: 60px;
 	background					: #030303;
 	font-size					: 2em;
+visibility	: hidden;
+display	: none;
 }
 
 #logo
@@ -32,13 +34,20 @@ BODY
 	height						: 20px;
 }
 
+/* Battles *******************************************************************/
+#battle-toolbar
+{
+	background					: #030303;
+	margin-bottom				: 15px;
+}
+
 #team0-logs,
 #team1-logs
 {
 	overflow-x					: hidden;
 	overflow-y					: auto;
 	height						: 400px;
-	margin-top					: 10px;
+	margin-top					: 0 15px;
 	border						: 1px solid #FAFAFA;
 }
 
@@ -62,12 +71,6 @@ BODY
 #team1-logs .pass
 {
 	background					: #AABBAA;
-}
-
-#team0-logs,
-#team1-logs
-{
-	margin-bottom				: 10px;
 }
 
 #team0-logs UL,

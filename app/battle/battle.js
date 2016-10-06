@@ -147,6 +147,10 @@ function battleController($compile, $http, toaster)
 
 	function showMove()
 	{
+		// clean prev turn marked cells
+		var jAll	= document.querySelectorAll('.cell');
+		angular.element(jAll).removeClass('reachable');
+
 		var iCur	= oMap.iSelectedTroop;
 		var iX		= oMap.troop[iCur].x;
 		var iY		= oMap.troop[iCur].y;
@@ -158,6 +162,10 @@ function battleController($compile, $http, toaster)
 
 	function showAttack()
 	{
+		// clean prev turn marked cells
+		var jAll	= document.querySelectorAll('.cell');
+		angular.element(jAll).children().children().removeClass('attackable');
+
 		var iCur	= oMap.iSelectedTroop;
 		var iX		= oMap.troop[iCur].x;
 		var iY		= oMap.troop[iCur].y;
@@ -176,15 +184,10 @@ function battleController($compile, $http, toaster)
 			oMap.troop[iCur].class	= 'selected';
 		else
 		{
+			console.error('selectTroop veut selectionner une troupe absente');
 			oMap.iSelectedTroop--;
 			selectTroop();
 		}
-
-		// clean prev turn marked cells
-		var jAll	= document.querySelectorAll('.cell');
-
-		angular.element(jAll).removeClass('reachable');
-		angular.element(jAll).children().children().removeClass('attackable');
 
 		// get troop coords
 		var iX		= oMap.troop[iCur].x;
@@ -198,7 +201,7 @@ function battleController($compile, $http, toaster)
 
 		if(!aAttackableCells.length)
 		{
-			nextTroop();
+			//fnNextTroop();
 		}
 	}
 
@@ -209,19 +212,24 @@ function battleController($compile, $http, toaster)
 		// move troop to dest
 		if(jSelectedDest.hasClass('reachable'))
 		{
-			// get troop coords
+			// get destination coords
 			var iX				= jSelectedDest.attr('data-x');
 			var iY				= jSelectedDest.attr('data-y');
+
+			// move troop
 			var iCur			= oMap.iSelectedTroop;
 			oMap.troop[iCur].x	= iX;
 			oMap.troop[iCur].y	= iY;
 		
 			// Add mark on selected troop
+			/*
+			TODO : necessaire encore ?
 			var jAll	= document.querySelectorAll('.cell');
 
 			angular.element(jAll).removeClass('reachable');
 
 			var dCell	= document.querySelector('[data-x="'+iX+'"][data-y="'+iY+'"]');
+			*/
 		}
 	}
 
@@ -327,11 +335,13 @@ function battleController($compile, $http, toaster)
 			toaster.pop('warning', 'Erreur', 'Cible non attaquable');
 		}
 
-		nextTroop();
+		//fnNextTroop();
 	}
 
-	function nextTroop()
+	function fnNextTroop()
 	{
+		console.info('fnNextTroop', oMap.iSelectedTroop);
+
 		// remove all classes
 		var jAll	= document.querySelectorAll('.cell');
 
@@ -400,6 +410,7 @@ function battleController($compile, $http, toaster)
 	this.info				= aInfo;
 
 	// public function
+	this.fnNextTroop		= fnNextTroop;
 	this.selectDest			= selectDest;
 	this.selectAtt			= selectAtt;
 	this.displayUnitInfo	= displayUnitInfo;
