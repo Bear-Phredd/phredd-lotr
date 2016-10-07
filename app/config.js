@@ -8,7 +8,7 @@ var oConfig	=
 	oSource	:
 	{
 		pRace	: 'data/race.json',
-		pBattle	: 'data/battle-2.json',
+		pBattle	: 'data/battle-3.json',
 	}
 };
 

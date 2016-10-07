@@ -42,17 +42,17 @@ function battleController($compile, $http, toaster)
 		return oMap;
 	}
 
-	function getNeighbour(iX, iY, iMove)
+	function getNeighbour(iX, iY, iMove, bRange)
 	{
-		getEastNeighbour(iX, iY, iMove);
-		getWestNeighbour(iX, iY, iMove);
-		getSouthNeighbour(iX, iY, iMove);
-		getNorthNeighbour(iX, iY, iMove);
+		getEastNeighbour(iX, iY, iMove, bRange);
+		getWestNeighbour(iX, iY, iMove, bRange);
+		getSouthNeighbour(iX, iY, iMove, bRange);
+		getNorthNeighbour(iX, iY, iMove, bRange);
 
 		aSearchedCells	= [];
 	}
 
-	function getEastNeighbour(iX, iY, iMove)
+	function getEastNeighbour(iX, iY, iMove, bRange)
 	{
 		iX++;
 
@@ -60,15 +60,15 @@ function battleController($compile, $http, toaster)
 			handleNeighbour(iX, iY, iMove);
 	}
 
-	function getWestNeighbour(iX, iY, iMove)
+	function getWestNeighbour(iX, iY, iMove, bRange)
 	{
 		iX--;
 
 		if (iX>0)
-			handleNeighbour(iX, iY, iMove);
+			handleNeighbour(iX, iY, iMove, bRange);
 	}
 
-	function getSouthNeighbour(iX, iY, iMove)
+	function getSouthNeighbour(iX, iY, iMove, bRange)
 	{
 		iY++;
 
@@ -76,7 +76,7 @@ function battleController($compile, $http, toaster)
 			handleNeighbour(iX, iY, iMove);
 	}
 
-	function getNorthNeighbour(iX, iY, iMove)
+	function getNorthNeighbour(iX, iY, iMove, bRange)
 	{
 		iY--;
 
@@ -107,7 +107,7 @@ function battleController($compile, $http, toaster)
 		angular.element(dCell).children().children().addClass('attackable');
 	}
 
-	function handleNeighbour(iX, iY, iMove)
+	function handleNeighbour(iX, iY, iMove, bRange)
 	{
 		// already explored
 		if (isFoundNeighbour(iX, iY))
@@ -122,13 +122,16 @@ function battleController($compile, $http, toaster)
 		if(iAction == 2 && bUnit == 'true' && iTeam1!=iTeam2)
 			addAttackable(iX, iY, dCell);
 
-		iMove	-= iCost;
+		if(bRange)
+			iMove--;
+		else
+			iMove	-= iCost;
 
 		if(iAction == 1 && iMove>=0)
 			addReachable(iX, iY, dCell);
 
 		if(iMove>0)
-			getNeighbour(iX, iY, iMove);
+			getNeighbour(iX, iY, iMove, bRange);
 	}
 
 	function getCost(dCell)
@@ -157,7 +160,7 @@ function battleController($compile, $http, toaster)
 		var iMove	= oMap.troop[iCur].move;
 
 		iAction		= 1;
-		getNeighbour(iX, iY, iMove);
+		getNeighbour(iX, iY, iMove, false);
 	}
 
 	function fnShowAttack()
@@ -172,7 +175,7 @@ function battleController($compile, $http, toaster)
 		var iRange	= oMap.troop[iCur].range;
 
 		iAction		= 2;
-		getNeighbour(iX, iY, iRange);
+		getNeighbour(iX, iY, iRange, true);
 	}
 
 	function fnSelectTroop()
@@ -398,10 +401,23 @@ function battleController($compile, $http, toaster)
 		}
 	);
 
+	function fnSaveGame()
+	{
+		console.log('save game');
+		var sJson = angular.toJson(oMap);
+console.log('sjson', sJson);
+	}
+
+	function fnLoadGame()
+	{
+	}
+
 	// send to view
 	this.info				= aInfo;
 
 	// public function
+	this.fnSaveGame			= fnSaveGame;
+	this.fnLoadGame			= fnLoadGame;
 	this.fnNextTroop		= fnNextTroop;
 	this.selectDest			= selectDest;
 	this.selectAtt			= selectAtt;

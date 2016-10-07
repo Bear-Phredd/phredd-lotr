@@ -184,6 +184,12 @@ FOOTER
 	color						: #030303;
 	font-size					: 1.4em;
 }
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:focus,
+.navbar-inverse .navbar-nav>.active>a:hover
+{
+	border-radius			: 10px 10px 0 0;;
+}
 
 /* Toaster */
 .toaster
