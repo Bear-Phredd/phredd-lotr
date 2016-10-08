@@ -1,0 +1,58 @@
+<h3>Balance des forces</h3>
+
+<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
+<thead>
+	<tr>
+		<th></th>
+		<th class="team0">{{battle.map.team[0].player}}</th>
+		<th class="team1">{{battle.map.team[1].player}}</th>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<th>Unité</th>
+		<td class="text-right">{{battle.map.team[0].iCount | number:0}}</td>
+		<td class="text-right">{{battle.map.team[1].iCount | number:0}}</td>
+	</tr>
+	<tr>
+		<th>PV</th>
+		<td class="text-right">{{battle.map.team[0].oTotal.pv | number:0}}</td>
+		<td class="text-right">{{battle.map.team[1].oTotal.pv | number:0}}</td>
+	</tr>
+	<tr>
+		<th>moy. PV</th>
+		<td class="text-right">{{battle.map.team[0].oAverage.pv | number:1}}</td>
+		<td class="text-right">{{battle.map.team[1].oAverage.pv | number:1}}</td>
+	</tr>
+	<tr>
+		<th>moy. att</th>
+		<td class="text-right">{{battle.map.team[0].oAverage.att | number:1}}</td>
+		<td class="text-right">{{battle.map.team[1].oAverage.att | number:1}}</td>
+	</tr>
+	<tr>
+		<th>moy. def</th>
+		<td class="text-right">{{battle.map.team[0].oAverage.def | number:1}}</td>
+		<td class="text-right">{{battle.map.team[1].oAverage.def | number:1}}</td>
+	</tr>
+	<tr>
+		<th>moy. Armure</th>
+		<td class="text-right">{{battle.map.team[0].oAverage.armor | number:1}}</td>
+		<td class="text-right">{{battle.map.team[1].oAverage.armor | number:1}}</td>
+	</tr>
+	<tr>
+		<th>moy. Dégat</th>
+		<td class="text-right">{{battle.map.team[0].oAverage.damage | number:1}}</td>
+		<td class="text-right">{{battle.map.team[1].oAverage.damage | number:1}}</td>
+	</tr>
+	<tr>
+		<th>moy. Déplac.</th>
+		<td class="text-right">{{battle.map.team[0].oAverage.move | number:1}}</td>
+		<td class="text-right">{{battle.map.team[1].oAverage.move | number:1}}</td>
+	</tr>
+	<tr>
+		<th>moy. range</th>
+		<td class="text-right">{{battle.map.team[0].oAverage.range | number:1}}</td>
+		<td class="text-right">{{battle.map.team[1].oAverage.range | number:1}}</td>
+	</tr>
+</tbody>
+</table>

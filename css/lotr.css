@@ -13,17 +13,25 @@ HEADER
 	font-size					: 2em;
 }
 
-#logo
-{
-	background					: #030303;
-	padding						: 15px;
-}
-
 FOOTER
 {
 	position					: fixed;
 	bottom						: 0;
 	right						: 0;
+	padding						: 15px;
+}
+
+H1,
+H2,
+H3,
+H4
+{
+	margin-top					: 0;
+}
+
+#logo
+{
+	background					: #030303;
 	padding						: 15px;
 }
 
@@ -176,10 +184,12 @@ FOOTER
 /* bottom pane */
 #battle-balance
 {
+	position					: absolute;
+	bottom						: 50px;
+	left						: 5px;
 	padding						: 10px;
-	margin						: 10px;
 	background					: #FFFFFF;
-	color						: #000000;
+	color						: #000000 !important;
 	border						: 1px solid #000000;
 	border-radius				: 10px;
 }
@@ -202,6 +212,11 @@ FOOTER
 	border-radius			: 10px 10px 0 0;;
 }
 
+table
+{
+	color						: #030303;
+	font-size					: 1em;
+}
 /* Toaster */
 .toaster
 {

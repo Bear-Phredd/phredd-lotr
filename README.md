@@ -7,9 +7,15 @@ Jeux de bataille de figurine inspiré sur Seigneur des Anneaux
 bug :
 * apres deplacement d'une unité, sa case de depart reste inaccessible aux autres unités.
 * apres avoir tué un ennemy, l'unité reste selectionné
-* les positions attaquable ne prennent pas enc ocmpte la porté de l'attaque.
+* la porté des armes ne fonctionne pas toujours
+
+optimisation :
+* fnComputeTeam : simlifier les calculs pour ne pas avoir a tout recalculer lors d'une blessure ou d'un kill
+* ameliorer la structure de la map
 
 todo :
+* gestion de compte user
+* save/load game
+* genererr map
 * disposition manuelle des troupes sur la map
-* ameliorer la structure de la map
 * IA pour jeu en solo contre l'ordinateur

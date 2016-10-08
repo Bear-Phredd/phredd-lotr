@@ -22,101 +22,79 @@ function battleController($compile, $http, toaster)
 		// Add troop count for loop
 		oMap.iTroopCount	= oMap.troop.length;
 
-		// consolidate team stats
-		for(var i=0; i<oMap.iTroopCount; i++)
-		{
-			var oTroop	= oMap.troop[i];
-			var iTeam	= oTroop.team;
-
-			// troop count
-			if(typeof oMap.team[iTeam].iCount == 'undefined')
-				oMap.team[iTeam].iCount	= 1;
-			else
-				oMap.team[iTeam].iCount++;
-
-			// PV count
-			if(typeof oMap.team[iTeam].iPV == 'undefined')
-				oMap.team[iTeam].iPV = oTroop.pv;
-			else
-				oMap.team[iTeam].iPV += oTroop.pv;
-
-			// PV count
-			if(typeof oMap.team[iTeam].fPV == 'undefined')
-				oMap.team[iTeam].fPV = oTroop.pv;
-			else
-				oMap.team[iTeam].fPV += oTroop.pv;
-
-			// Att count
-			if(typeof oMap.team[iTeam].fAtt == 'undefined')
-				oMap.team[iTeam].fAtt = oTroop.att;
-			else
-				oMap.team[iTeam].fAtt += oTroop.att;
-
-			// Def count
-			if(typeof oMap.team[iTeam].fDef == 'undefined')
-				oMap.team[iTeam].fDef= oTroop.def;
-			else
-				oMap.team[iTeam].fDef += oTroop.def;
-
-			// Armor count
-			if(typeof oMap.team[iTeam].fArmor == 'undefined')
-				oMap.team[iTeam].fAmor = oTroop.armor;
-			else
-				oMap.team[iTeam].fArmor += oTroop.armor;
-
-			// Dammage count
-			if(typeof oMap.team[iTeam].fDmg == 'undefined')
-				oMap.team[iTeam].fDmg = oTroop.dammage;
-			else
-				oMap.team[iTeam].fDmg += oTroop.dammage;
-
-			// Move count
-			if(typeof oMap.team[iTeam].fMove == 'undefined')
-				oMap.team[iTeam].fMove = oTroop.move;
-			else
-				oMap.team[iTeam].fMove += oTroop.move;
-
-			// Range count
-			if(typeof oMap.team[iTeam].fRange == 'undefined')
-				oMap.team[iTeam].fRange  = oTroop.range;
-			else
-				oMap.team[iTeam].fRange += oTroop.range;
-		}
-
-		var aAttr	= 
-		[
-			'fPV',
-			'fAtt',
-			'fDef',
-			'fDmg',
-			'fArmor',
-			'fDmg',
-			'fMove',
-			'fRange',
-		];
-
-		// Compute average values for all attributes
-		var iLen	= aAttr.length;
-
-		for(var i=0; i<iLen; i++)
-		{
-			// TODO : ca marche pas...
-			var sAttr	= aAttr[i];
-			console.log(sAttr);
-			console.log(oMap.team[0].sAttr);
-			console.log(oMap.team[0].iCount);
-			oMap.team[0].sAttr	= oMap.team[0].sAttr / oMap.team[0].iCount;
-			oMap.team[1].sAttr	= oMap.team[1].sAttr / oMap.team[1].iCount;
-		}
-
-console.log(oMap);
 		// Add logger
 		oMap.logs	= [ [], [] ];
+
+		// Compute stats for each teams
+		fnComputeTeam();
 
 		// Init first troop
 		oMap.iSelectedTroop		= 0;
 
 		return oMap;
+	}
+
+	// Compute team stats
+	function fnComputeTeam()
+	{
+		// prepare stats
+		var iLen	= oMap.team.length;
+		for(var i=0;i<iLen; i++)
+		{
+			oMap.team[i].iCount		= 0;
+			oMap.team[i].oTotal		= {};
+			oMap.team[i].oAverage	= {};
+		}
+
+		// Count unit
+		for(var i=0; i<oMap.iTroopCount; i++)
+		{
+			var oTroop	= oMap.troop[i];
+			var iTeam	= oTroop.team;
+
+			if(typeof oMap.team[iTeam].iCount == 'undefined')
+				oMap.team[iTeam].iCount	= 1;
+			else
+				oMap.team[iTeam].iCount++;
+		}
+
+		var aAttr	= 
+		[
+			'pv',
+			'att',
+			'def',
+			'armor',
+			'damage',
+			'move',
+			'range',
+		];
+
+		var iAttrLen	= aAttr.length;
+
+		// for each attribute
+		for(var j=0; j<iAttrLen; j++)
+		{
+			var sAttr	= aAttr[j];
+
+			// Compute total
+			for(var i=0; i<oMap.iTroopCount; i++)
+			{
+				var oTroop	= oMap.troop[i];
+				var iTeam	= oTroop.team;
+
+				if(typeof oMap.team[iTeam].oTotal[sAttr] == 'undefined')
+					oMap.team[iTeam].oTotal[sAttr] = +oTroop[sAttr];
+				else
+					oMap.team[iTeam].oTotal[sAttr] += +oTroop[sAttr];
+			}
+
+			// Compute average values
+			var iLen	= oMap.team.length;
+			for(var i=0;i<iLen; i++)
+			{
+				oMap.team[i].oAverage[sAttr]	= oMap.team[i].oTotal[sAttr] / oMap.team[i].iCount;
+			}
+		}
 	}
 
 	function getNeighbour(iX, iY, iMove, bRange)
@@ -359,22 +337,14 @@ console.log(oMap);
 						var iPv		= oMap.troop[iId].pv;
 						oMap.troop[iId].pv	-= +iWound;
 
+						// compute new balance
+						fnComputeTeam();
+
 						if(oMap.troop[iId].pv > 0)
 							aResult.push('Il reste ' + oMap.troop[iId].pv + ' PdV a ' + sDef);
 						else
 						{
-							var iTeam	= oMap.troop[iId].team;
-
-							aResult.push(sDef + ' succombe à ses blessures.');
-
-							oMap.troop.splice(iId, 1);
-							oMap.iTroopCount--;
-							oMap.team[iTeam].iCount--;
-
-							if(oMap.team[iTeam].iCount == 0)
-							{
-								alert('Equipe ' + iTeam + ' est vaincue !')
-							}
+							aResult	= fnKillTropp(iId, aResult);
 						}
 					}
 				}
@@ -408,6 +378,29 @@ console.log(oMap);
 		}
 
 		fnNextTroop();
+	}
+
+	// Kill troop iId
+	function fnKillTropp(iId, aResult)
+	{
+		var iTeam	= oMap.troop[iId].team;
+		var sDef	= oMap.troop[iId].name;
+
+		aResult.push(sDef + ' succombe à ses blessures.');
+
+		oMap.troop.splice(iId, 1);
+		oMap.iTroopCount--;
+		oMap.team[iTeam].iCount--;
+
+		// compute new balance
+		fnComputeTeam();
+
+		if(oMap.team[iTeam].iCount == 0)
+		{
+			alert('Equipe ' + iTeam + ' est vaincue !')
+		}
+
+		return aResult;
 	}
 
 	function fnNextTroop()
@@ -450,11 +443,21 @@ console.log(oMap);
 		this.info				= aInfo;
 	}
 
-	// handle div
-	function fnShowPane(sDiv)
+	// Toogle pane
+	function fnPaneToggle(sDiv)
 	{
-		console.log('fnShowPane', sDiv);
-		oShow.sDiv	= !oShow.sDiv;
+		oShow[sDiv]	= !oShow[sDiv];
+	}
+
+	function fnSaveGame()
+	{
+		console.log('save game');
+		var sJson = angular.toJson(oMap);
+console.log('sjson', sJson);
+	}
+
+	function fnLoadGame()
+	{
 	}
 
 	// Init battle
@@ -489,23 +492,13 @@ console.log(oMap);
 		}
 	);
 
-	function fnSaveGame()
-	{
-		console.log('save game');
-		var sJson = angular.toJson(oMap);
-console.log('sjson', sJson);
-	}
-
-	function fnLoadGame()
-	{
-	}
-
 	// send to view
 	this.info				= aInfo;
 	this.oShow				= oShow;
+	this.oMap				= oMap;
 
 	// public function
-	this.fnShowPane			= fnShowPane;
+	this.fnPaneToggle		= fnPaneToggle;
 	this.fnSaveGame			= fnSaveGame;
 	this.fnLoadGame			= fnLoadGame;
 	this.fnNextTroop		= fnNextTroop;

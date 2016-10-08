@@ -1,68 +1,6 @@
 <div class="row">
 	<div class="col-xs-12">
 
-<div id="battle-balance" ng-show="true" toto="{{oShow.balance}}">
-
-<table class="table table-striped table-bordered table-hover table-condensed">
-<thead>
-	<tr>
-		<th></th>
-		<th class="team0">Equipe 0</th>
-		<th class="team1">equipe 1</th>
-	</tr>
-</thead>
-<tbody>
-	<tr>
-		<th>Unité</th>
-		<td>{{oMap.team[0].iCount}}</td>
-		<td>{{oMap.team[1].iCount}}</td>
-	</tr>
-	<tr>
-		<th>PV</th>
-		<td>{{oMap.team[0].iPV}}</td>
-		<td>{{oMap.team[1].iPV}}</td>
-	</tr>
-	<tr>
-		<th>moy. Att</th>
-		<td>{{oMap.team[0].fAtt}}</td>
-		<td>{{oMap.team[1].fAtt}}</td>
-	</tr>
-	<tr>
-		<th>moy. Def</th>
-		<td>{{oMap.team[0].fDef}}</td>
-		<td>{{oMap.team[1].fDef}}</td>
-	</tr>
-	<tr>
-		<th>moy. Armure</th>
-		<td>{{oMap.team[0].fArmor}}</td>
-		<td>{{oMap.team[1].fArmor}}</td>
-	</tr>
-	<tr>
-		<th>moy. Dégat</th>
-		<td>{{oMap.team[0].fDmg}}</td>
-		<td>{{oMap.team[1].fDmg}}</td>
-	</tr>
-	<tr>
-		<th>moy. Déplac.</th>
-		<td>{{oMap.team[0].fMove}}</td>
-		<td>{{oMap.team[1].fMove}}</td>
-	</tr>
-	<tr>
-		<th>moy. Range</th>
-		<td>{{oMap.team[0].fRange}}</td>
-		<td>{{oMap.team[1].fRange}}</td>
-	</tr>
-</tbody>
-</table>
-
-</div>
-
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-xs-12">
-
 <div class="btn-toolbar" role="toolbar" aria-label="Battle toolbar">
 	<div class="btn-group" role="group" aria-label="Battle controls">
 		<button
@@ -99,7 +37,7 @@
 		</button-->
 	</div>
 	<div class="btn-group" role="group" aria-label="battle chart">
-		<button type="button" class="btn btn-default btn-lg" ng-click="fnShowPane('balance')">
+		<button type="button" class="btn btn-default btn-lg" ng-click="battle.fnPaneToggle('balance')">
 			<i class="fa fa-balance-scale"></i>
 		</button>
 		<button type="button" class="btn btn-default btn-lg disabled">
